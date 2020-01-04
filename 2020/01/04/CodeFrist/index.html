@@ -14,16 +14,16 @@
 <meta property="og:site_name" content="Unshell&#39;s Blog">
 <meta property="og:description" content="前言在关系数据库中，不同表之间往往不是全部都单独存在，而是相互存在关联的。两个不同表之间可以存在外键依赖关系，一个表自身也可以有自反关系(表中的一个字段引用主键，从而也是外键字段)。 外键列名默认约定一对多关系：以产品类Product和类别类Gategory为例，一个类别对应多个产品。 123456789101112131415161718192021222324252627282930&#x2F;&#x2F;&#x2F; &amp;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/13907412-24bcffe43e2e9db3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/13907412-8bba048435f9113c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/13907412-c1e270b3e0e869c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/13907412-9a2d0522829f7cc9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://unshell.github.io/blog/css/images/article/codefirst/01.png">
+<meta property="og:image" content="https://unshell.github.io/blog/css/images/article/codefirst/02.png">
+<meta property="og:image" content="https://unshell.github.io/blog/css/images/article/codefirst/03.png">
+<meta property="og:image" content="https://unshell.github.io/blog/css/images/article/codefirst/04.png">
 <meta property="article:published_time" content="2020-01-04T10:46:51.000Z">
-<meta property="article:modified_time" content="2020-01-04T10:52:28.797Z">
+<meta property="article:modified_time" content="2020-01-04T11:32:35.599Z">
 <meta property="article:author" content="Unshell">
 <meta property="article:tag" content="c#,entity framework,code first">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/13907412-24bcffe43e2e9db3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="https://unshell.github.io/blog/css/images/article/codefirst/01.png">
   
     <link rel="alternate" href="/blog/atom.xml" title="Unshell&#39;s Blog" type="application/atom+xml">
   
@@ -108,7 +108,7 @@
 <blockquote>
 <p>同样的，<code>Category 类</code>中也定义了<code>Product 类</code>的集合属性。</p>
 </blockquote>
-<p>说明：在<code>Category 类</code>及<code>Product 类</code>中的引用属性及集合属性前加<code>virtual</code>修饰，为的是<code>Entity Framework Code First</code>的延迟加载功能。不使用<code>virtual</code>修饰，在<code>Category 类</code>的一个实例要查询包含的<code>Product</code>实例时，将不会启用延迟加载。当然<code>Entity Framework Code First</code>延迟加载并不是必须的，所以<code>virtual</code>修饰符也可以不加。<br>　　在定义以上两个类之后，不再添加任何的Entity Framework Code First与数据库的映射配置，运行之后，生成的数据表结构为：<br><img src="http://upload-images.jianshu.io/upload_images/13907412-24bcffe43e2e9db3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="数据表结构"><br>　　从生成的<code>Categories</code>与<code>Products</code>表结构可以看出，在<code>Products</code>表中的外键<code>CategoryID</code>与引用的表<code>Categories</code>主键名称相同。<br>在数据库中生成的Products表，查看外键<code>FK_dbo.Products_dbo.Categories_CategoryID</code>属性，其的确有启用级联删除功能。<br><img src="http://upload-images.jianshu.io/upload_images/13907412-8bba048435f9113c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="外键关系-级联"></p>
+<p>说明：在<code>Category 类</code>及<code>Product 类</code>中的引用属性及集合属性前加<code>virtual</code>修饰，为的是<code>Entity Framework Code First</code>的延迟加载功能。不使用<code>virtual</code>修饰，在<code>Category 类</code>的一个实例要查询包含的<code>Product</code>实例时，将不会启用延迟加载。当然<code>Entity Framework Code First</code>延迟加载并不是必须的，所以<code>virtual</code>修饰符也可以不加。<br>　　在定义以上两个类之后，不再添加任何的Entity Framework Code First与数据库的映射配置，运行之后，生成的数据表结构为：<br><img src="/blog/css/images/article/codefirst/01.png" alt="数据表结构"><br>　　从生成的<code>Categories</code>与<code>Products</code>表结构可以看出，在<code>Products</code>表中的外键<code>CategoryID</code>与引用的表<code>Categories</code>主键名称相同。<br>在数据库中生成的Products表，查看外键<code>FK_dbo.Products_dbo.Categories_CategoryID</code>属性，其的确有启用级联删除功能。<br><img src="/blog/css/images/article/codefirst/02.png" alt="外键关系-级联"></p>
 <blockquote>
 <p>级联：当删除Categories表中一条记录时，数据库会自动联带删除<code>Products</code>表中属于该类别的记录。</p>
 </blockquote>
@@ -141,7 +141,7 @@
 <blockquote>
 <p>同样的<code>UserProfile 类</code>中定义了<code>User 类</code>作为主键属性。</p>
 </blockquote>
-<p>在定义以上两个类之后，不再添加任何的Entity Framework Code First与数据库的映射配置，运行之后，生成的数据表结构为：<br><img src="http://upload-images.jianshu.io/upload_images/13907412-c1e270b3e0e869c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="数据表结构"><br>当然仅为了实现一对一关系的话也可以让<code>UserID</code>做外键，但在真实项目中要明确主外键关系。</p>
+<p>在定义以上两个类之后，不再添加任何的Entity Framework Code First与数据库的映射配置，运行之后，生成的数据表结构为：<br><img src="/blog/css/images/article/codefirst/03.png" alt="数据表结构"><br>当然仅为了实现一对一关系的话也可以让<code>UserID</code>做外键，但在真实项目中要明确主外键关系。</p>
 <blockquote>
 <p>当然通过覆写<code>OnModelCreating</code>方法同样可以做到，这里就不多做演示了。</p>
 </blockquote>
@@ -150,7 +150,7 @@
 <blockquote>
 <p>这里<code>User 类</code>和<code>Role 类</code>双方定义对方类的集合属性</p>
 </blockquote>
-<p>在定义以上两个类之后，不再添加任何的Entity Framework Code First与数据库的映射配置，运行之后，生成的数据表结构为：<br><img src="http://upload-images.jianshu.io/upload_images/13907412-9a2d0522829f7cc9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="数据表结构"></p>
+<p>在定义以上两个类之后，不再添加任何的Entity Framework Code First与数据库的映射配置，运行之后，生成的数据表结构为：<br><img src="/blog/css/images/article/codefirst/04.png" alt="数据表结构"></p>
 <blockquote>
 <p>这里值得注意的是：实体类运行之后，除了生成<code>Users 表</code>和<code>Roles 表</code>之外，还生成了<code>RoleUsers 表</code>作为中介表<code>RoleUsers 表</code>里面包含双方的主键。</p>
 </blockquote>
@@ -170,7 +170,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://unshell.github.io/2020/01/04/CodeFrist/" data-id="ck4zheakd0006uco95jr5d1hr" class="article-share-link">Share</a>
+      <a data-url="https://unshell.github.io/2020/01/04/CodeFrist/" data-id="ck4zifvaa0006x0o9flvd3p3r" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/c-entity-framework-code-first/" rel="tag">c#,entity framework,code first</a></li></ul>
