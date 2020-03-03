@@ -70,6 +70,112 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-快速使用MySQL" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2020/03/03/%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8MySQL/" class="article-date">
+  <time datetime="2020-03-03T00:36:43.000Z" itemprop="datePublished">2020-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2020/03/03/%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8MySQL/">快速使用MySQL</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>操作系统：Windows 10 | MySQL 版本 8.0.16 | 博客记录时间：2020/3/1 16:05</p>
+<h3 id="安装-MySQL-Community-Server"><a href="#安装-MySQL-Community-Server" class="headerlink" title="安装 MySQL Community Server"></a>安装 MySQL Community Server</h3><p>进入 MySQL官网 <a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">下载</a> ZIP Archive：</p>
+<p><img src="/blog/css/images/article/mysql/fast-use-mysql01.png" alt="fast-use-mysql01"></p>
+<p>点击下载后进入到下个页面，选择 No thanks, just start my download：</p>
+<p><img src="/blog/css/images/article/mysql/fast-use-mysql02.png" alt="fast-use-mysql02"></p>
+<p>下载完之后进行解压，这里我们把压缩包解压在 F:\mysql</p>
+<p>以 <strong>管理员的身份</strong> 打开 cmd 命令行工具，切换目录并输入 mysql 如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="built_in">cd</span> F:\mysql\bin</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> mysql</span></span><br><span class="line">// 如果输出如下，就可以开始装载服务了</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> ERROR 2003 (HY000): Can<span class="string">'t connect to MySQL server on '</span>localhost<span class="string">' (10061)</span></span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果你的系统特别干净，可能会跳出提示框提示你缺少dll文件，只要把 <a href="/blog/css/images/article/mysql/msvcp140.dll">msvcp140.dll</a> 和 <a href="/blog/css/images/article/mysql/vcruntime140.dll">vcruntime140.dll</a> 放在 系统盘的Windows\System32 文件夹下再输入 mysql 就可以了。</p>
+</blockquote>
+<h3 id="配置-MySQL-服务"><a href="#配置-MySQL-服务" class="headerlink" title="配置 MySQL 服务"></a>配置 MySQL 服务</h3><p>在配置 MySQL 服务之前，我们先配置下 MySQL 的配置文件，创建名为 <strong>my.ini</strong> 的文件在 F:\mysql\ 目录下，配置内容如下：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[client]</span></span><br><span class="line"><span class="comment"># 设置mysql客户端默认字符集</span></span><br><span class="line"><span class="attr">default-character-set</span>=utf8mb4</span><br><span class="line"></span><br><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="comment"># 设置3306端口</span></span><br><span class="line"><span class="attr">port</span> = <span class="number">3306</span></span><br><span class="line"><span class="comment"># 设置mysql的安装目录</span></span><br><span class="line"><span class="attr">basedir</span>=F:\\mysql</span><br><span class="line"><span class="comment"># 设置 mysql数据库的数据的存放目录，MySQL 8+ 不需要以下配置，系统自己生成即可，否则有可能报错</span></span><br><span class="line"><span class="comment"># datadir=F:\\sqldata</span></span><br><span class="line"><span class="comment"># 允许最大连接数</span></span><br><span class="line"><span class="attr">max_connections</span>=<span class="number">100</span></span><br><span class="line"><span class="comment"># 服务端使用的字符集默认为8比特编码的latin1字符集</span></span><br><span class="line"><span class="attr">character-set-server</span>=utf8mb4</span><br><span class="line"><span class="comment"># 创建新表时将使用的默认存储引擎</span></span><br><span class="line"><span class="attr">default-storage-engine</span>=INNODB</span><br></pre></td></tr></table></figure>
+
+<p>之后我们再使用 cmd 命令行工具初始化数据库：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> mysqld --initialize --console</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>–initialize : 初始化</li>
+<li>–console : 输出在控制台</li>
+</ul>
+<p>执行完成后，会输出 root 用户的初始化密码，如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> ....</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> [Note] [MY-010454] [Server] A temporary password is generated <span class="keyword">for</span> root@localhost: g)tqN+Oia4_a</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> ....</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>g)tqN+Oia4_a</strong> 就是初始化密码，之后登入会用到：</p>
+<p>输入以下安装命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> mysqld install</span></span><br></pre></td></tr></table></figure>
+
+<p>之后启动服务：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> net start mysql</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="登入MySQL"><a href="#登入MySQL" class="headerlink" title="登入MySQL"></a>登入MySQL</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> mysql -h 主机名 -u 用户名 -p</span></span><br></pre></td></tr></table></figure>
+
+<p>参数说明：</p>
+<ul>
+<li>-h：指定客户端要登录的 MySQL 主机名，登录本机（localhost 或 127.0.0.1）该参数可以省略；</li>
+<li>-u：登录的用户名；</li>
+<li>-p：告诉服务器将会使用一个密码来登录，如果所要登录的用户名密码为空, 可以忽略此选项。</li>
+</ul>
+<p>登入实例如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> mysql -u root -p</span></span><br></pre></td></tr></table></figure>
+
+<p>按 Enter 键后确认，如果MySQL正在运行则会得到如下响应：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter password:</span><br></pre></td></tr></table></figure>
+
+<p>输入刚才的密码：<strong>g)tqN+Oia4_a</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 9</span><br><span class="line">Server version: 8.0.16 MySQL Community Server - GPL</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.</span><br><span class="line"><span class="meta">mysql&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果输出为以上的内容说明已经可以登录 MySQL 了。</p>
+<h3 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h3><p>值得一提的是MySQL 8和低版本的MySQL修改密码的方式有差别，而且密码的编码方式也有区别</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;qwe123&#39;;</span><br><span class="line">Query OK, 0 rows affected (0.34 sec)</span><br></pre></td></tr></table></figure>
+
+<p>如果你使用数据库连接工具，如 <strong>Navicat Premium</strong> 连接的时候可能在当前版本得修改密码编码方式，否者会提示：</p>
+<blockquote>
+<p>[ERROR 2059] - Authentication plugin ‘caching_sha2_password’ cannot be loaded…</p>
+</blockquote>
+<p>修改密码编码方式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;qwe123&#39;;</span><br><span class="line">Query OK, 0 rows affected (0.12 sec)</span><br><span class="line">mysql&gt; FLUSH PRIVILEGES;</span><br><span class="line">Query OK, 0 rows affected (0.04 sec)</span><br><span class="line">mysql&gt; SELECT HOST,USER,PLUGIN FROM MYSQL.USER;</span><br><span class="line">+-----------+------------------+-----------------------+</span><br><span class="line">| HOST      | USER             | PLUGIN                |</span><br><span class="line">+-----------+------------------+-----------------------+</span><br><span class="line">| localhost | mysql.infoschema | caching_sha2_password |</span><br><span class="line">| localhost | mysql.session    | caching_sha2_password |</span><br><span class="line">| localhost | mysql.sys        | caching_sha2_password |</span><br><span class="line">| localhost | root             | mysql_native_password |</span><br><span class="line">+-----------+------------------+-----------------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>可以看到用户为 root 的 PLUGIN 已经改成了 mysql_native_password。</p>
+<p>到这里就一切准备就绪了！</p>
+<h2 id="删除-MySQL-Community-Server"><a href="#删除-MySQL-Community-Server" class="headerlink" title="删除 MySQL Community Server"></a>删除 MySQL Community Server</h2><h3 id="停止服务"><a href="#停止服务" class="headerlink" title="停止服务"></a>停止服务</h3><p>使用管理员身份打开 CMD ，输入net stop mysql：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> net stop mysql</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> MySQL 服务正在停止...</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> MySQL 服务已成功停止。</span></span><br><span class="line">// 如果不是管理员身份可能发生下面的情况</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> 发生系统错误 5。</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> 拒接访问。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="删除-Windows-注册表"><a href="#删除-Windows-注册表" class="headerlink" title="删除 Windows 注册表"></a>删除 Windows 注册表</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> sc delete mysql</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> [SC] DeleteService 成功</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="删除环境变量"><a href="#删除环境变量" class="headerlink" title="删除环境变量"></a>删除环境变量</h3><p>如果之前有配置环境变量的话，将Path里关于MySQL的环境变量删除即可</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://unshell.github.io/2020/03/03/%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8MySQL/" data-id="ck7b72bff0003fssm98rr2z7j" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/fast/" rel="tag">fast</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Tomcat常用配置项" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/blog/2020/01/04/Tomcat%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E9%A1%B9/" class="article-date">
@@ -165,7 +271,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://unshell.github.io/2020/01/04/Tomcat%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E9%A1%B9/" data-id="ck5njx5d20001p0sm3b4g2gda" class="article-share-link">Share</a>
+      <a data-url="https://unshell.github.io/2020/01/04/Tomcat%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E9%A1%B9/" data-id="ck7b72bfb0001fssm06pz2cvz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/tomcat/" rel="tag">tomcat</a></li></ul>
@@ -271,7 +377,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://unshell.github.io/2020/01/04/CodeFrist/" data-id="ck5njx5cw0000p0sm8gev15du" class="article-share-link">Share</a>
+      <a data-url="https://unshell.github.io/2020/01/04/CodeFrist/" data-id="ck7b72bfg0004fssm9sr27wpy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/entity-framework/" rel="tag">entity_framework</a></li></ul>
@@ -346,7 +452,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://unshell.github.io/2020/01/04/Http%E6%B5%81%E7%A8%8B%E7%AE%80%E8%BF%B0/" data-id="ck5njx5d50003p0smbwpyhkf6" class="article-share-link">Share</a>
+      <a data-url="https://unshell.github.io/2020/01/04/Http%E6%B5%81%E7%A8%8B%E7%AE%80%E8%BF%B0/" data-id="ck7b72bf50000fssm9uyfgt1w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/http/" rel="tag">http</a></li></ul>
@@ -371,7 +477,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/entity-framework/" rel="tag">entity_framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/http/" rel="tag">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/tomcat/" rel="tag">tomcat</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/entity-framework/" rel="tag">entity_framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/fast/" rel="tag">fast</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/http/" rel="tag">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/tomcat/" rel="tag">tomcat</a></li></ul>
     </div>
   </div>
 
@@ -381,7 +487,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/blog/tags/entity-framework/" style="font-size: 10px;">entity_framework</a> <a href="/blog/tags/http/" style="font-size: 10px;">http</a> <a href="/blog/tags/tomcat/" style="font-size: 10px;">tomcat</a>
+      <a href="/blog/tags/entity-framework/" style="font-size: 10px;">entity_framework</a> <a href="/blog/tags/fast/" style="font-size: 10px;">fast</a> <a href="/blog/tags/http/" style="font-size: 10px;">http</a> <a href="/blog/tags/tomcat/" style="font-size: 10px;">tomcat</a>
     </div>
   </div>
 
@@ -390,7 +496,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/01/">一月 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/01/">一月 2020</a></li></ul>
     </div>
   </div>
 
@@ -401,6 +507,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/blog/2020/03/03/%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8MySQL/">快速使用MySQL</a>
+          </li>
         
           <li>
             <a href="/blog/2020/01/04/Tomcat%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E9%A1%B9/">Tomcat 常用配置项</a>
