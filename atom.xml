@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Unshell&#39;s Blog</title>
   
-  <subtitle>我本将心向明月,奈何明月照沟渠</subtitle>
+  <subtitle>我相信所有坚韧不拔的努力，迟早会得来好报酬。</subtitle>
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="https://unshell.github.io/"/>
-  <updated>2020-04-21T08:49:17.700Z</updated>
+  <updated>2020-04-22T01:25:02.517Z</updated>
   <id>https://unshell.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>正则表达式</title>
+    <link href="https://unshell.github.io/2020/04/22/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    <id>https://unshell.github.io/2020/04/22/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</id>
+    <published>2020-04-22T00:57:16.000Z</published>
+    <updated>2020-04-22T01:25:02.517Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>虽然正则内容不算很多但是用好正则还是得花一些时间的，这篇文章只是做简单的记录</p></blockquote><h3 id="运算符类型"><a href="#运算符类型" class="headerlink" title="运算符类型"></a>运算符类型</h3><ul><li>转义符 <code>/</code> </li><li>圆括号和方括号 <code>()</code> 、<code>[]</code> </li><li>限定符 <code>*</code> 、<code>+</code> 、<code>?</code> 、<code>{n}</code>、<code>{n,}</code>、<code>{n,m}</code> </li><li>定位点和序列 <code>^</code> 、<code>$</code> 、<code>\</code> </li><li>替换，或操作 <code>|</code> </li></ul><h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><p>以JavaScript为例使用正则的方法：</p><ul><li>/[a-z]*/</li><li>^[a-z]*$</li></ul><p>圆括号相当于子表达式，类似组的概念可以被重复使用</p><ul><li>/\b([a-z]+) \1\b/</li><li>/\b([a-z]+) ([a-z]+)\b/</li></ul><p>两者效果一样</p><p><code>^</code>虽然为定位符，但是在<code>[]</code>中起到非的作用</p><h3 id="推荐网站"><a href="#推荐网站" class="headerlink" title="推荐网站"></a>推荐网站</h3><ul><li><a href="https://regexper.com/" target="_blank" rel="noopener">以SVG的样式展示正则的规则</a></li><li><a href="https://regex101.com/" target="_blank" rel="noopener">比较实用的正则检测网站</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;虽然正则内容不算很多但是用好正则还是得花一些时间的，这篇文章只是做简单的记录&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;运算符类型&quot;&gt;&lt;a href=&quot;#运算符类型&quot; class=&quot;headerlink&quot; title=&quot;运算符类型&quot;&gt;&lt;/
+      
+    
+    </summary>
+    
+    
+    
+      <category term="regex" scheme="https://unshell.github.io/tags/regex/"/>
+    
+  </entry>
   
   <entry>
     <title>CentOs安装MySql</title>
