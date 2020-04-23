@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Tomcat 部署项目时遇到的问题 | Unshell&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.org.apache.catalina.webresources.Cache.getResource Unable to add the resource原因：资源缓存空间不足，得配置更大的资源缓存空间 解决方法：修改 Tomcat 文件夹下 conf 文件中的 context.xml 文件，添加内容如下： 123&lt;Context&gt;	&lt;Resources cachingAll">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tomcat 部署项目时遇到的问题">
+<meta property="og:url" content="https://unshell.github.io/2020/04/23/Tomcat%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="Unshell&#39;s Blog">
+<meta property="og:description" content="1.org.apache.catalina.webresources.Cache.getResource Unable to add the resource原因：资源缓存空间不足，得配置更大的资源缓存空间 解决方法：修改 Tomcat 文件夹下 conf 文件中的 context.xml 文件，添加内容如下： 123&lt;Context&gt;	&lt;Resources cachingAll">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-23T09:23:19.000Z">
+<meta property="article:modified_time" content="2020-04-23T09:50:45.068Z">
+<meta property="article:author" content="Unshell">
+<meta property="article:tag" content="tomcat">
+<meta property="article:tag" content="bug">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="Unshell&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/blog/favicon.jpg">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">Unshell&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blog/" id="subtitle">我相信所有坚韧不拔的努力，迟早会得来好报酬。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blog/">home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://unshell.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Tomcat部署项目时遇到的问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2020/04/23/Tomcat%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2020-04-23T09:23:19.000Z" itemprop="datePublished">2020-04-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Tomcat 部署项目时遇到的问题
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-org-apache-catalina-webresources-Cache-getResource-Unable-to-add-the-resource"><a href="#1-org-apache-catalina-webresources-Cache-getResource-Unable-to-add-the-resource" class="headerlink" title="1.org.apache.catalina.webresources.Cache.getResource Unable to add the resource"></a>1.org.apache.catalina.webresources.Cache.getResource Unable to add the resource</h3><p><strong>原因：</strong>资源缓存空间不足，得配置更大的资源缓存空间</p>
+<p><strong>解决方法：</strong>修改 Tomcat 文件夹下 conf 文件中的 context.xml 文件，添加内容如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Context</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">Resources</span> <span class="attr">cachingAllowed</span>=<span class="string">"true"</span> <span class="attr">cacheMaxSize</span>=<span class="string">"150000"</span> &gt;</span><span class="tag">&lt;/<span class="name">Resources</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Context</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-org-apache-catalina-core-NamingContextListener-lifecycleEvent-naming-namingContextCreationFailed"><a href="#2-org-apache-catalina-core-NamingContextListener-lifecycleEvent-naming-namingContextCreationFailed" class="headerlink" title="2.org.apache.catalina.core.NamingContextListener.lifecycleEvent naming.namingContextCreationFailed"></a>2.org.apache.catalina.core.NamingContextListener.lifecycleEvent naming.namingContextCreationFailed</h3><p><strong>原因</strong>：命名监听器创建失败</p>
+<h3 id="3-org-apache-jasper-servlet-TldScanner-scanJars-至少有一个JAR被扫描用于TLD但尚未包含TLD。-为此记录器启用调试日志记录，以获取已扫描但未在其中找到TLD的完整JAR列表。-在扫描期间跳过不需要的JAR可以缩短启动时间和JSP编译时间。"><a href="#3-org-apache-jasper-servlet-TldScanner-scanJars-至少有一个JAR被扫描用于TLD但尚未包含TLD。-为此记录器启用调试日志记录，以获取已扫描但未在其中找到TLD的完整JAR列表。-在扫描期间跳过不需要的JAR可以缩短启动时间和JSP编译时间。" class="headerlink" title="3.org.apache.jasper.servlet.TldScanner.scanJars 至少有一个JAR被扫描用于TLD但尚未包含TLD。 为此记录器启用调试日志记录，以获取已扫描但未在其中找到TLD的完整JAR列表。 在扫描期间跳过不需要的JAR可以缩短启动时间和JSP编译时间。"></a>3.org.apache.jasper.servlet.TldScanner.scanJars 至少有一个JAR被扫描用于TLD但尚未包含TLD。 为此记录器启用调试日志记录，以获取已扫描但未在其中找到TLD的完整JAR列表。 在扫描期间跳过不需要的JAR可以缩短启动时间和JSP编译时间。</h3><p><strong>等级：</strong>警告</p>
+<p><strong>解决方法:</strong></p>
+<p><strong>1.修改 Tomcat 文件夹下 conf 文件夹中 logging.properties 文件</strong></p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 输出被扫描TLD的Jar包的列表</span></span><br><span class="line"><span class="meta">org.apache.jasper.servlet.TldScanner.level</span> = <span class="string">FINE</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>2.重新运行 Tomcat ，日志输出扫描的Jar包</strong></p>
+<p><strong>3.修改 Tomcat 文件夹下 conf 文件夹中 catalina.properties 文件</strong></p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Default list of JAR files that should not be scanned using the JarScanner</span></span><br><span class="line"><span class="comment"># functionality. This is typically used to scan JARs for configuration</span></span><br><span class="line"><span class="comment"># information. JARs that do not contain such information may be excluded from</span></span><br><span class="line"><span class="comment"># the scan to speed up the scanning process. This is the default list. JARs on</span></span><br><span class="line"><span class="comment"># this list are excluded from all scans. The list must be a comma separated list</span></span><br><span class="line"><span class="comment"># of JAR file names.</span></span><br><span class="line"><span class="comment"># The list of JARs to skip may be over-ridden at a Context level for individual</span></span><br><span class="line"><span class="comment"># scan types by configuring a JarScanner with a nested JarScanFilter.</span></span><br><span class="line"><span class="comment"># The JARs listed below include:</span></span><br><span class="line"><span class="comment"># - Tomcat Bootstrap JARs</span></span><br><span class="line"><span class="comment"># - Tomcat API JARs</span></span><br><span class="line"><span class="comment"># - Catalina JARs</span></span><br><span class="line"><span class="comment"># - Jasper JARs</span></span><br><span class="line"><span class="comment"># - Tomcat JARs</span></span><br><span class="line"><span class="comment"># - Common non-Tomcat JARs</span></span><br><span class="line"><span class="comment"># - Test JARs (JUnit, Cobertura and dependencies)</span></span><br><span class="line"><span class="meta">tomcat.util.scan.StandardJarScanFilter.jarsToSkip</span>=<span class="string">\</span></span><br><span class="line">annotations-api.jar,\ant-junit*.jar,\ant-launcher.jar,\</span><br><span class="line">ant.jar,\asm-*.jar,\aspectj*.jar,\bootstrap.jar,\catalina-ant.jar,\catalina-ha.jar,\</span><br><span class="line">catalina-ssi.jar,\catalina-storeconfig.jar,\catalina-tribes.jar,\catalina.jar,\cglib-*.jar,\</span><br><span class="line">cobertura-*.jar,\commons-beanutils*.jar,\commons-codec*.jar,\commons-collections*.jar,\</span><br><span class="line">commons-daemon.jar,\commons-dbcp*.jar,\commons-digester*.jar,\</span><br><span class="line">commons-fileupload*.jar,\commons-httpclient*.jar,\commons-io*.jar,\commons-lang*.jar,\</span><br><span class="line">commons-logging*.jar,\commons-math*.jar,\commons-pool*.jar,\dom4j-*.jar,\easymock-*.jar,\</span><br><span class="line">ecj-*.jar,\el-api.jar,\geronimo-spec-jaxrpc*.jar,\h2*.jar,\hamcrest-*.jar,\hibernate*.jar,\</span><br><span class="line">httpclient*.jar,\icu4j-*.jar,\jasper-el.jar,\jasper.jar,\jaspic-api.jar,\jaxb-*.jar,\</span><br><span class="line">jaxen-*.jar,\jdom-*.jar,\jetty-*.jar,\jmx-tools.jar,\jmx.jar,\jsp-api.jar,\jstl.jar,\</span><br><span class="line">jta*.jar,\junit-*.jar,\junit.jar,\log4j*.jar,\mail*.jar,\objenesis-*.jar,\oraclepki.jar,\</span><br><span class="line">oro-*.jar,\servlet-api-*.jar,\servlet-api.jar,\slf4j*.jar,\taglibs-standard-spec-*.jar,\</span><br><span class="line">tagsoup-*.jar,\tomcat-api.jar,\tomcat-coyote.jar,\tomcat-dbcp.jar,\tomcat-i18n-*.jar,\</span><br><span class="line">tomcat-jdbc.jar,\tomcat-jni.jar,\tomcat-juli-adapters.jar,\tomcat-juli.jar,\tomcat-util-scan.jar,\</span><br><span class="line">tomcat-util.jar,\tomcat-websocket.jar,\tools.jar,\websocket-api.jar,\wsdl4j*.jar,\xercesImpl.jar,\</span><br><span class="line"><span class="attr">xml-apis.jar,\xmlParserAPIs-*.jar,\xmlParserAPIs.jar,\xom-*.jar</span></span><br><span class="line"><span class="comment"># 将要跳过扫描的包在后面添加</span></span><br><span class="line"><span class="comment"># 例子：mysql-connector-*.jar,\</span></span><br><span class="line"><span class="comment"># 注意以 ,\ 分隔</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://unshell.github.io/2020/04/23/Tomcat%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" data-id="ck9cltk220008tssmcubc3go9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/bug/" rel="tag">bug</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/tomcat/" rel="tag">tomcat</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2020/04/23/Tomcat%E6%9C%8D%E5%8A%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Tomcat 服务</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/bug/" rel="tag">bug</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/entity-framework/" rel="tag">entity_framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/fast/" rel="tag">fast</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/http/" rel="tag">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/regex/" rel="tag">regex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/tomcat/" rel="tag">tomcat</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/bug/" style="font-size: 10px;">bug</a> <a href="/blog/tags/entity-framework/" style="font-size: 10px;">entity_framework</a> <a href="/blog/tags/fast/" style="font-size: 15px;">fast</a> <a href="/blog/tags/http/" style="font-size: 10px;">http</a> <a href="/blog/tags/linux/" style="font-size: 10px;">linux</a> <a href="/blog/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/blog/tags/regex/" style="font-size: 10px;">regex</a> <a href="/blog/tags/tomcat/" style="font-size: 20px;">tomcat</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/01/">一月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2020/04/23/Tomcat%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">Tomcat 部署项目时遇到的问题</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/04/23/Tomcat%E6%9C%8D%E5%8A%A1/">Tomcat 服务</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/04/23/%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8Tomcat/">快速使用 Tomcat</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/04/22/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/04/21/CentOs%E5%AE%89%E8%A3%85MySql/">CentOs 安装 MySql</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Unshell<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">archives</a>
+  
+</nav>
+    
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+
+  
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
