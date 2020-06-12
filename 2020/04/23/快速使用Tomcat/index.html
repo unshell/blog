@@ -16,7 +16,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unshell.github.io/blog/css/images/article/tomcat/01.png">
 <meta property="article:published_time" content="2020-04-23T00:44:09.000Z">
-<meta property="article:modified_time" content="2020-04-23T09:15:55.528Z">
+<meta property="article:modified_time" content="2020-06-12T08:48:04.994Z">
 <meta property="article:author" content="Unshell">
 <meta property="article:tag" content="tomcat">
 <meta property="article:tag" content="fast">
@@ -136,7 +136,7 @@
 <p>Tomcat 中 bin 和 lib 文件中的 Jar 包说明了需要在 Java 环境下运行</p>
 </blockquote>
 <p>然后我们运行 bin 目录下的 startup.bat 文件，如果出现终端窗口一直在打印日志说明运行成功：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">┌────────────────────────────────────────────────────────┐</span><br><span class="line">│Command Prompt</span><br><span class="line">├────────────────────────────────────────────────────────┤</span><br><span class="line">│Server.服务器版本:Apache Tomcat&#x2F;9.0.34</span><br><span class="line">│服务器构建:Apr 3 2020 2020 12:02:52 UTC</span><br><span class="line">│服务器版本号(:9.0.34.0</span><br><span class="line">│OS Name:Windows 10</span><br><span class="line">│OS.版本:10.0</span><br><span class="line">│架构:amd64</span><br><span class="line">│Java 环境变量: C:\Program Files\Java\jdk1.8.0_251\jre</span><br><span class="line">│JVM 版本:1.8.0_251-b08</span><br><span class="line">│JVM.供应商:Oracle Corporation</span><br><span class="line">│--- 略 ---</span><br><span class="line">└────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">┌────────────────────────────────────────────────────────┐</span><br><span class="line">│Command Prompt</span><br><span class="line">├────────────────────────────────────────────────────────┤</span><br><span class="line">│Server.服务器版本:Apache Tomcat/9.0.34</span><br><span class="line">│服务器构建:Apr 3 2020 2020 12:02:52 UTC</span><br><span class="line">│服务器版本号(:9.0.34.0</span><br><span class="line">│OS Name:Windows 10</span><br><span class="line">│OS.版本:10.0</span><br><span class="line">│架构:amd64</span><br><span class="line">│Java 环境变量: C:\Program Files\Java\jdk1.8.0_251\jre</span><br><span class="line">│JVM 版本:1.8.0_251-b08</span><br><span class="line">│JVM.供应商:Oracle Corporation</span><br><span class="line">│--- 略 ---</span><br><span class="line">└────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
 
 <p>打印的内容大致如上，这时候使用浏览器访问 <code>localhost:8080</code>，就能看到 Tomcat 的如下页面：</p>
 <p><img src="/blog/css/images/article/tomcat/01.png" alt="webapps 目录下的 ROOT 项目"></p>
@@ -144,7 +144,7 @@
 <p>值得注意的是 work 目录中生成了对应项目的文件夹，但内容为空。以及 logs 文件中生成的日志文件，如 catalina.*.log 中的内容就是终端窗口打印的内容。</p>
 </blockquote>
 <h3 id="日志输出乱码问题"><a href="#日志输出乱码问题" class="headerlink" title="日志输出乱码问题"></a>日志输出乱码问题</h3><p>当窗口运行时输出的日志出现乱码，如<code>淇℃伅</code>之类的内容说明当前系统的默认字符与 conf 文件夹中 logging.properties 文件中 encoding 属性设置不相同(默认配置为UTF-8)。</p>
-<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">┌────────────────────────────────────────────────────────┐</span><br><span class="line">│Command Prompt</span><br><span class="line">├────────────────────────────────────────────────────────┤</span><br><span class="line">│Microsoft Windows [版本 10.0.17763.1039]</span><br><span class="line">│(c) 2018 Microsoft Corporation。保留所有权利。</span><br><span class="line">│C:\Users\Administrator&gt;chcp</span><br><span class="line">│活动代码页: 936</span><br><span class="line">└────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">┌────────────────────────────────────────────────────────┐</span><br><span class="line">│Command Prompt</span><br><span class="line">├────────────────────────────────────────────────────────┤</span><br><span class="line">│Microsoft Windows [版本 10.0.17763.1039]</span><br><span class="line">│(c) 2018 Microsoft Corporation。保留所有权利。</span><br><span class="line">│C:\Users\Administrator&gt;chcp</span><br><span class="line">│活动代码页: 936</span><br><span class="line">└────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
 
 <p>获取当前系统活动代码页，找到对应编码，如下表：</p>
 <table>
@@ -225,14 +225,14 @@
 <p>当然如果你不想在 webapps 中添加项目，你也可以新添加的主机中配置其他文件夹问根目录。</p>
 <p>注意：在访问中(具体得看实际情况)，webapps 中可能存在一些会发生冲突的项目名，如 manager</p>
 </blockquote>
-<h3 id="更多内容"><a href="#更多内容" class="headerlink" title="更多内容"></a>更多内容</h3><ul>
-<li></li>
+<h3 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h3><ul>
+<li><a href="https://tomcat.apache.org/tomcat-9.0-doc/index.html" target="_blank" rel="noopener">Apache Tomcat 9 (9.0.36) - Documentation Index</a></li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://unshell.github.io/2020/04/23/%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8Tomcat/" data-id="ckaq4osld000gcksm8qtof5mk" class="article-share-link">Share</a>
+      <a data-url="https://unshell.github.io/2020/04/23/%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8Tomcat/" data-id="ckbc2s3yl0007qssm33eqdpfk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/fast/" rel="tag">fast</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/tomcat/" rel="tag">tomcat</a></li></ul>
@@ -274,7 +274,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/bug/" rel="tag">bug</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/entity-framework/" rel="tag">entity_framework</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/fast/" rel="tag">fast</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/http/" rel="tag">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/other/" rel="tag">other</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/regex/" rel="tag">regex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/tomcat/" rel="tag">tomcat</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/bug/" rel="tag">bug</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/fast/" rel="tag">fast</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/regex/" rel="tag">regex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/tomcat/" rel="tag">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/windows/" rel="tag">windows</a></li></ul>
     </div>
   </div>
 
@@ -284,7 +284,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/blog/tags/bug/" style="font-size: 10px;">bug</a> <a href="/blog/tags/entity-framework/" style="font-size: 10px;">entity_framework</a> <a href="/blog/tags/fast/" style="font-size: 15px;">fast</a> <a href="/blog/tags/http/" style="font-size: 10px;">http</a> <a href="/blog/tags/linux/" style="font-size: 10px;">linux</a> <a href="/blog/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/blog/tags/other/" style="font-size: 15px;">other</a> <a href="/blog/tags/regex/" style="font-size: 10px;">regex</a> <a href="/blog/tags/tomcat/" style="font-size: 20px;">tomcat</a>
+      <a href="/blog/tags/bug/" style="font-size: 10px;">bug</a> <a href="/blog/tags/fast/" style="font-size: 10px;">fast</a> <a href="/blog/tags/linux/" style="font-size: 15px;">linux</a> <a href="/blog/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/blog/tags/redis/" style="font-size: 10px;">redis</a> <a href="/blog/tags/regex/" style="font-size: 10px;">regex</a> <a href="/blog/tags/tomcat/" style="font-size: 20px;">tomcat</a> <a href="/blog/tags/windows/" style="font-size: 10px;">windows</a>
     </div>
   </div>
 
@@ -293,7 +293,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/01/">一月 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/03/">三月 2020</a></li></ul>
     </div>
   </div>
 
@@ -306,11 +306,7 @@
       <ul>
         
           <li>
-            <a href="/blog/2020/05/28/%E5%8F%91%E5%B8%83%E9%A1%B9%E7%9B%AE%E5%88%B0Tomcat/">发布项目到Tomcat</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2020/04/27/%E9%83%A8%E7%BD%B2%E5%A4%96%E7%BD%AETomcat%E9%A1%B9%E7%9B%AE/">部署外置Tomcat项目</a>
+            <a href="/blog/2020/06/12/CentOs%E5%AE%89%E8%A3%85Redis/">CentOs 安装 Redis</a>
           </li>
         
           <li>
@@ -323,6 +319,10 @@
         
           <li>
             <a href="/blog/2020/04/23/%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8Tomcat/">快速使用 Tomcat</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2020/04/22/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
           </li>
         
       </ul>
