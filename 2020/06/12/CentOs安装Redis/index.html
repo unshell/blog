@@ -126,72 +126,8 @@
     </div>
     <div class="post-content ">
         <h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><p>系统：CentOS Linux release 8.1.1911 (Core) | Redis版本：6.0.5 | 博客记录时间：2020-6-12 17:15:04</p>
-<h3 id="下载最新稳定版"><a href="#下载最新稳定版" class="headerlink" title="下载最新稳定版"></a>下载最新稳定版</h3><pre><code class="shell"># 下载当前最新版
-wget http://download.redis.io/releases/redis-6.0.5.tar.gz
-# 解压
-tar -zxvf redis-6.0.5.tar.gz
-# 进入到解压后的文件夹
-cd redis-6.0.5
-</code></pre>
-<h3 id="安装-Redis"><a href="#安装-Redis" class="headerlink" title="安装 Redis"></a>安装 Redis</h3><pre><code class="shell"># 编译前先确保安装了gcc和make
-yum install -y gcc make
-# 编译(当前位置在redis-6.0.5中)
-make
-# 编译结果如下：
-    一堆的CC编译
-    LINK redis-server
-    INSTALL redis-sentinel
-    LINK redis-cli
-    LINK redis-benchmark
-    INSTALL redis-check-rdb
-    INSTALL redis-check-aof
-
-Hint: It&#39;s a good idea to run &#39;make test&#39; ;)
-# 进入到src目录
-cd src
-# 安装
-make install
-# 输出内容如下：
-    INSTALL install
-    INSTALL install
-    INSTALL install
-    INSTALL install
-    INSTALL install
-# 运行redis-server
-redis-server
-# 输出内容如下说明，安装成功：
-7303:C 12 Jun 2020 17:59:37.751 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
-7303:C 12 Jun 2020 17:59:37.751 # Redis version=6.0.5, bits=64, commit=00000000, modified=0, pid=7303, just started
-7303:C 12 Jun 2020 17:59:37.751 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
-7303:M 12 Jun 2020 17:59:37.751 * Increased maximum number of open files to 10032 (it was originally set to 1024).
-                _._                                                  
-           _.-``__ &#39;&#39;-._                                             
-      _.-``    `.  `_.  &#39;&#39;-._           Redis 6.0.5 (00000000/0) 64 bit
-  .-`` .-```.  ```\/    _.,_ &#39;&#39;-._                                   
- (    &#39;      ,       .-`  | `,    )     Running in standalone mode
- |`-._`-...-` __...-.``-._|&#39;` _.-&#39;|     Port: 6379
- |    `-._   `._    /     _.-&#39;    |     PID: 7303
-  `-._    `-._  `-./  _.-&#39;    _.-&#39;                                   
- |`-._`-._    `-.__.-&#39;    _.-&#39;_.-&#39;|                                  
- |    `-._`-._        _.-&#39;_.-&#39;    |           http://redis.io        
-  `-._    `-._`-.__.-&#39;_.-&#39;    _.-&#39;                                   
- |`-._`-._    `-.__.-&#39;    _.-&#39;_.-&#39;|                                  
- |    `-._`-._        _.-&#39;_.-&#39;    |                                  
-  `-._    `-._`-.__.-&#39;_.-&#39;    _.-&#39;                                   
-      `-._    `-.__.-&#39;    _.-&#39;                                       
-          `-._        _.-&#39;                                           
-              `-.__.-&#39;                                               
-
-7303:M 12 Jun 2020 17:59:37.752 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
-7303:M 12 Jun 2020 17:59:37.752 # Server initialized
-7303:M 12 Jun 2020 17:59:37.752 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add &#39;vm.overcommit_memory = 1&#39; to /etc/sysctl.conf and then reboot or run the command &#39;sysctl vm.overcommit_memory=1&#39; for this to take effect.
-7303:M 12 Jun 2020 17:59:37.752 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command &#39;echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled&#39; as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
-7303:M 12 Jun 2020 17:59:37.752 * Loading RDB produced by version 6.0.5
-7303:M 12 Jun 2020 17:59:37.752 * RDB age 885 seconds
-7303:M 12 Jun 2020 17:59:37.752 * RDB memory usage when created 0.77 Mb
-7303:M 12 Jun 2020 17:59:37.752 * DB loaded from disk: 0.000 seconds
-7303:M 12 Jun 2020 17:59:37.752 * Ready to accept connections
-</code></pre>
+<h3 id="下载最新稳定版"><a href="#下载最新稳定版" class="headerlink" title="下载最新稳定版"></a>下载最新稳定版</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 下载当前最新版</span></span><br><span class="line">wget http://download.redis.io/releases/redis-6.0.5.tar.gz</span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压</span></span><br><span class="line">tar -zxvf redis-6.0.5.tar.gz</span><br><span class="line"><span class="meta">#</span><span class="bash"> 进入到解压后的文件夹</span></span><br><span class="line">cd redis-6.0.5</span><br></pre></td></tr></table></figure>
+<h3 id="安装-Redis"><a href="#安装-Redis" class="headerlink" title="安装 Redis"></a>安装 Redis</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 编译前先确保安装了gcc和make</span></span><br><span class="line">yum install -y gcc make</span><br><span class="line"><span class="meta">#</span><span class="bash"> 编译(当前位置在redis-6.0.5中)</span></span><br><span class="line">make</span><br><span class="line"><span class="meta">#</span><span class="bash"> 编译结果如下：</span></span><br><span class="line">	一堆的CC编译</span><br><span class="line">    LINK redis-server</span><br><span class="line">    INSTALL redis-sentinel</span><br><span class="line">    LINK redis-cli</span><br><span class="line">    LINK redis-benchmark</span><br><span class="line">    INSTALL redis-check-rdb</span><br><span class="line">    INSTALL redis-check-aof</span><br><span class="line"></span><br><span class="line">Hint: It's a good idea to run 'make test' ;)</span><br><span class="line"><span class="meta">#</span><span class="bash"> 进入到src目录</span></span><br><span class="line">cd src</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装</span></span><br><span class="line">make install</span><br><span class="line"><span class="meta">#</span><span class="bash"> 输出内容如下：</span></span><br><span class="line">    INSTALL install</span><br><span class="line">    INSTALL install</span><br><span class="line">    INSTALL install</span><br><span class="line">    INSTALL install</span><br><span class="line">    INSTALL install</span><br><span class="line"><span class="meta">#</span><span class="bash"> 运行redis-server</span></span><br><span class="line">redis-server</span><br><span class="line"><span class="meta">#</span><span class="bash"> 输出内容如下说明，安装成功：</span></span><br><span class="line">7303:C 12 Jun 2020 17:59:37.751 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo</span><br><span class="line">7303:C 12 Jun 2020 17:59:37.751 # Redis version=6.0.5, bits=64, commit=00000000, modified=0, pid=7303, just started</span><br><span class="line">7303:C 12 Jun 2020 17:59:37.751 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf</span><br><span class="line">7303:M 12 Jun 2020 17:59:37.751 * Increased maximum number of open files to 10032 (it was originally set to 1024).</span><br><span class="line">                _._                                                  </span><br><span class="line">           _.-``__ ''-._                                             </span><br><span class="line">      _.-``    `.  `_.  ''-._           Redis 6.0.5 (00000000/0) 64 bit</span><br><span class="line">  .-`` .-```.  ```\/    _.,_ ''-._                                   </span><br><span class="line"> (    '      ,       .-`  | `,    )     Running in standalone mode</span><br><span class="line"> |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379</span><br><span class="line"> |    `-._   `._    /     _.-'    |     PID: 7303</span><br><span class="line">  `-._    `-._  `-./  _.-'    _.-'                                   </span><br><span class="line"> |`-._`-._    `-.__.-'    _.-'_.-'|                                  </span><br><span class="line"> |    `-._`-._        _.-'_.-'    |           http://redis.io        </span><br><span class="line">  `-._    `-._`-.__.-'_.-'    _.-'                                   </span><br><span class="line"> |`-._`-._    `-.__.-'    _.-'_.-'|                                  </span><br><span class="line"> |    `-._`-._        _.-'_.-'    |                                  </span><br><span class="line">  `-._    `-._`-.__.-'_.-'    _.-'                                   </span><br><span class="line">      `-._    `-.__.-'    _.-'                                       </span><br><span class="line">          `-._        _.-'                                           </span><br><span class="line">              `-.__.-'                                               </span><br><span class="line"></span><br><span class="line">7303:M 12 Jun 2020 17:59:37.752 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.</span><br><span class="line">7303:M 12 Jun 2020 17:59:37.752 # Server initialized</span><br><span class="line">7303:M 12 Jun 2020 17:59:37.752 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.</span><br><span class="line">7303:M 12 Jun 2020 17:59:37.752 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.</span><br><span class="line">7303:M 12 Jun 2020 17:59:37.752 * Loading RDB produced by version 6.0.5</span><br><span class="line">7303:M 12 Jun 2020 17:59:37.752 * RDB age 885 seconds</span><br><span class="line">7303:M 12 Jun 2020 17:59:37.752 * RDB memory usage when created 0.77 Mb</span><br><span class="line">7303:M 12 Jun 2020 17:59:37.752 * DB loaded from disk: 0.000 seconds</span><br><span class="line">7303:M 12 Jun 2020 17:59:37.752 * Ready to accept connections</span><br></pre></td></tr></table></figure>
 <h3 id="配置-Redis"><a href="#配置-Redis" class="headerlink" title="配置 Redis"></a>配置 Redis</h3><p>在初次接触前我们尤其要注意三个文件：</p>
 <ul>
 <li>redis-6.0.5<ul>
@@ -204,32 +140,8 @@ redis-server
 </ul>
 </li>
 </ul>
-<pre><code class="shell"># 用 vim 打开 redis-cli
-vim redis-cli
-# 开启守护进程：
-# By default Redis does not run as a daemon. Use &#39;yes&#39; if you need it.
-# Note that Redis will write a pid file in /var/run/redis.pid when daemonized.
-daemonize yes
-# 允许任何网络接口连接
-bind 127.0.0.1 修改为 bind 0.0.0.0
-# 连接密码授权
-# IMPORTANT NOTE: starting with Redis 6 &quot;requirepass&quot; is just a compatiblity
-# layer on top of the new ACL system. The option effect will be just setting
-# the password for the default user. Clients will still authenticate using
-# AUTH &lt;password&gt; as usually, or more explicitly with AUTH default &lt;password&gt;
-# if they follow the new protocol: both will work.
-#
-requirepass [你的密码]
-# 当然除了在配置中设置密码，你还可以在客户端设置密码
-config set requirepass [你的密码]
-# 其他的一些配置,如修改默认端口(6379)
-# Accept connections on the specified port, default is 6379 (IANA #815344).
-# If port 0 is specified Redis will not listen on a TCP socket.
-port 6379
-</code></pre>
-<h3 id="运行-Redis-服务"><a href="#运行-Redis-服务" class="headerlink" title="运行 Redis 服务"></a>运行 Redis 服务</h3><pre><code class="shell"># 配置相应的配置之后(包括开启守护进程),通过配置运行服务
-redis-server ../redis.conf
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 用 vim 打开 redis-cli</span></span><br><span class="line">vim redis-cli</span><br><span class="line"><span class="meta">#</span><span class="bash"> 开启守护进程：</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> By default Redis does not run as a daemon. Use <span class="string">'yes'</span> <span class="keyword">if</span> you need it.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Note that Redis will write a pid file <span class="keyword">in</span> /var/run/redis.pid when daemonized.</span></span><br><span class="line">daemonize yes</span><br><span class="line"><span class="meta">#</span><span class="bash"> 允许任何网络接口连接</span></span><br><span class="line">bind 127.0.0.1 修改为 bind 0.0.0.0</span><br><span class="line"><span class="meta">#</span><span class="bash"> 连接密码授权</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> IMPORTANT NOTE: starting with Redis 6 <span class="string">"requirepass"</span> is just a compatiblity</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> layer on top of the new ACL system. The option effect will be just setting</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> the password <span class="keyword">for</span> the default user. Clients will still authenticate using</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> AUTH &lt;password&gt; as usually, or more explicitly with AUTH default &lt;password&gt;</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="keyword">if</span> they follow the new protocol: both will work.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">requirepass [你的密码]</span><br><span class="line"><span class="meta">#</span><span class="bash"> 当然除了在配置中设置密码，你还可以在客户端设置密码</span></span><br><span class="line">config set requirepass [你的密码]</span><br><span class="line"><span class="meta">#</span><span class="bash"> 其他的一些配置,如修改默认端口(6379)</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Accept connections on the specified port, default is 6379 (IANA <span class="comment">#815344).</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> If port 0 is specified Redis will not listen on a TCP socket.</span></span><br><span class="line">port 6379</span><br></pre></td></tr></table></figure>
+<h3 id="运行-Redis-服务"><a href="#运行-Redis-服务" class="headerlink" title="运行 Redis 服务"></a>运行 Redis 服务</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 配置相应的配置之后(包括开启守护进程),通过配置运行服务</span></span><br><span class="line">redis-server ../redis.conf</span><br></pre></td></tr></table></figure>
 <h3 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h3><ul>
 <li><a href="http://download.redis.io/releases/" target="_blank" rel="noopener">Redis Archived Versions</a></li>
 </ul>

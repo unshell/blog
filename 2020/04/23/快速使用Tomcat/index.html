@@ -165,36 +165,14 @@
 <p>Tomcat 中 bin 和 lib 文件中的 Jar 包说明了需要在 Java 环境下运行</p>
 </blockquote>
 <p>然后我们运行 bin 目录下的 startup.bat 文件，如果出现终端窗口一直在打印日志说明运行成功：</p>
-<pre><code class="bash">┌────────────────────────────────────────────────────────┐
-│Command Prompt
-├────────────────────────────────────────────────────────┤
-│Server.服务器版本:Apache Tomcat/9.0.34
-│服务器构建:Apr 3 2020 2020 12:02:52 UTC
-│服务器版本号(:9.0.34.0
-│OS Name:Windows 10
-│OS.版本:10.0
-│架构:amd64
-│Java 环境变量: C:\Program Files\Java\jdk1.8.0_251\jre
-│JVM 版本:1.8.0_251-b08
-│JVM.供应商:Oracle Corporation
-│--- 略 ---
-└────────────────────────────────────────────────────────┘
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌────────────────────────────────────────────────────────┐</span><br><span class="line">│Command Prompt</span><br><span class="line">├────────────────────────────────────────────────────────┤</span><br><span class="line">│Server.服务器版本:Apache Tomcat/9.0.34</span><br><span class="line">│服务器构建:Apr 3 2020 2020 12:02:52 UTC</span><br><span class="line">│服务器版本号(:9.0.34.0</span><br><span class="line">│OS Name:Windows 10</span><br><span class="line">│OS.版本:10.0</span><br><span class="line">│架构:amd64</span><br><span class="line">│Java 环境变量: C:\Program Files\Java\jdk1.8.0_251\jre</span><br><span class="line">│JVM 版本:1.8.0_251-b08</span><br><span class="line">│JVM.供应商:Oracle Corporation</span><br><span class="line">│--- 略 ---</span><br><span class="line">└────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
 <p>打印的内容大致如上，这时候使用浏览器访问 <code>localhost:8080</code>，就能看到 Tomcat 的如下页面：</p>
 <p><img src="/image/tomcat/01.png" alt="webapps 目录下的 ROOT 项目"></p>
 <blockquote>
 <p>值得注意的是 work 目录中生成了对应项目的文件夹，但内容为空。以及 logs 文件中生成的日志文件，如 catalina.*.log 中的内容就是终端窗口打印的内容。</p>
 </blockquote>
 <h3 id="日志输出乱码问题"><a href="#日志输出乱码问题" class="headerlink" title="日志输出乱码问题"></a>日志输出乱码问题</h3><p>当窗口运行时输出的日志出现乱码，如<code>淇℃伅</code>之类的内容说明当前系统的默认字符与 conf 文件夹中 logging.properties 文件中 encoding 属性设置不相同(默认配置为UTF-8)。</p>
-<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><pre><code class="bash">┌────────────────────────────────────────────────────────┐
-│Command Prompt
-├────────────────────────────────────────────────────────┤
-│Microsoft Windows [版本 10.0.17763.1039]
-│(c) 2018 Microsoft Corporation。保留所有权利。
-│C:\Users\Administrator&gt;chcp
-│活动代码页: 936
-└────────────────────────────────────────────────────────┘
-</code></pre>
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">┌────────────────────────────────────────────────────────┐</span><br><span class="line">│Command Prompt</span><br><span class="line">├────────────────────────────────────────────────────────┤</span><br><span class="line">│Microsoft Windows [版本 10.0.17763.1039]</span><br><span class="line">│(c) 2018 Microsoft Corporation。保留所有权利。</span><br><span class="line">│C:\Users\Administrator&gt;chcp</span><br><span class="line">│活动代码页: 936</span><br><span class="line">└────────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
 <p>获取当前系统活动代码页，找到对应编码，如下表：</p>
 <table>
 <thead>
@@ -215,16 +193,7 @@
 </tbody>
 </table>
 <p>然后修改 logging.properties 中 encoding = GBK，如下：</p>
-<pre><code class="properties">############################################################
-# Handler specific properties.
-# Describes specific configuration info for Handlers.
-############################################################
-1catalina.org.apache.juli.AsyncFileHandler.level = FINE
-1catalina.org.apache.juli.AsyncFileHandler.directory = ${catalina.base}/logs
-1catalina.org.apache.juli.AsyncFileHandler.prefix = catalina.
-1catalina.org.apache.juli.AsyncFileHandler.maxDays = 90
-1catalina.org.apache.juli.AsyncFileHandler.encoding = GBK
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">############################################################</span><br><span class="line"># Handler specific properties.</span><br><span class="line"># Describes specific configuration info for Handlers.</span><br><span class="line">############################################################</span><br><span class="line">1catalina.org.apache.juli.AsyncFileHandler.level = FINE</span><br><span class="line">1catalina.org.apache.juli.AsyncFileHandler.directory = $&#123;catalina.base&#125;/logs</span><br><span class="line">1catalina.org.apache.juli.AsyncFileHandler.prefix = catalina.</span><br><span class="line">1catalina.org.apache.juli.AsyncFileHandler.maxDays = 90</span><br><span class="line">1catalina.org.apache.juli.AsyncFileHandler.encoding = GBK</span><br></pre></td></tr></table></figure>
 <h3 id="发布项目"><a href="#发布项目" class="headerlink" title="发布项目"></a>发布项目</h3><h4 id="1-添加-war-包到-webapps-中"><a href="#1-添加-war-包到-webapps-中" class="headerlink" title="1.添加 war 包到 webapps 中"></a>1.添加 war 包到 webapps 中</h4><ul>
 <li>webapps<ul>
 <li>FlogShiro.war</li>
@@ -245,43 +214,7 @@
 <p>具体内容根据实际情况决定</p>
 </blockquote>
 <h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>目前我们还没提到 conf 文件夹，以发布项目中的例子查看 conf &gt; server.xml 文件</p>
-<pre><code class="xml">&lt;!-- 删除注解后内容如下 --&gt;
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;Server port=&quot;8005&quot; shutdown=&quot;SHUTDOWN&quot;&gt;
-  &lt;Listener className=&quot;org.apache.catalina.startup.VersionLoggerListener&quot; /&gt;
-  &lt;Listener className=&quot;org.apache.catalina.core.AprLifecycleListener&quot; SSLEngine=&quot;on&quot; /&gt;
-  &lt;Listener className=&quot;org.apache.catalina.core.JreMemoryLeakPreventionListener&quot; /&gt;
-  &lt;Listener className=&quot;org.apache.catalina.mbeans.GlobalResourcesLifecycleListener&quot; /&gt;
-  &lt;Listener className=&quot;org.apache.catalina.core.ThreadLocalLeakPreventionListener&quot; /&gt;
-
-  &lt;GlobalNamingResources&gt;
-    &lt;Resource name=&quot;UserDatabase&quot; auth=&quot;Container&quot;
-              type=&quot;org.apache.catalina.UserDatabase&quot;
-              description=&quot;User database that can be updated and saved&quot;
-              factory=&quot;org.apache.catalina.users.MemoryUserDatabaseFactory&quot;
-              pathname=&quot;conf/tomcat-users.xml&quot; /&gt;
-  &lt;/GlobalNamingResources&gt;
-
-  &lt;Service name=&quot;Catalina&quot;&gt;
-    &lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;
-               connectionTimeout=&quot;20000&quot;
-               redirectPort=&quot;8443&quot; /&gt;
-    &lt;Engine name=&quot;Catalina&quot; defaultHost=&quot;localhost&quot;&gt;
-      &lt;Realm className=&quot;org.apache.catalina.realm.LockOutRealm&quot;&gt;
-        &lt;Realm className=&quot;org.apache.catalina.realm.UserDatabaseRealm&quot;
-               resourceName=&quot;UserDatabase&quot;/&gt;
-      &lt;/Realm&gt;
-
-      &lt;Host name=&quot;localhost&quot;  appBase=&quot;webapps&quot;
-            unpackWARs=&quot;true&quot; autoDeploy=&quot;true&quot;&gt;
-        &lt;Valve className=&quot;org.apache.catalina.valves.AccessLogValve&quot; directory=&quot;logs&quot;
-               prefix=&quot;localhost_access_log&quot; suffix=&quot;.txt&quot;
-               pattern=&quot;%h %l %u %t &amp;quot;%r&amp;quot; %s %b&quot; /&gt;
-      &lt;/Host&gt;
-    &lt;/Engine&gt;
-  &lt;/Service&gt;
-&lt;/Server&gt;
-</code></pre>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 删除注解后内容如下 --&gt;</span></span><br><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">Server</span> <span class="attr">port</span>=<span class="string">"8005"</span> <span class="attr">shutdown</span>=<span class="string">"SHUTDOWN"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Listener</span> <span class="attr">className</span>=<span class="string">"org.apache.catalina.startup.VersionLoggerListener"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Listener</span> <span class="attr">className</span>=<span class="string">"org.apache.catalina.core.AprLifecycleListener"</span> <span class="attr">SSLEngine</span>=<span class="string">"on"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Listener</span> <span class="attr">className</span>=<span class="string">"org.apache.catalina.core.JreMemoryLeakPreventionListener"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Listener</span> <span class="attr">className</span>=<span class="string">"org.apache.catalina.mbeans.GlobalResourcesLifecycleListener"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Listener</span> <span class="attr">className</span>=<span class="string">"org.apache.catalina.core.ThreadLocalLeakPreventionListener"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">GlobalNamingResources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Resource</span> <span class="attr">name</span>=<span class="string">"UserDatabase"</span> <span class="attr">auth</span>=<span class="string">"Container"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">type</span>=<span class="string">"org.apache.catalina.UserDatabase"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">description</span>=<span class="string">"User database that can be updated and saved"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">factory</span>=<span class="string">"org.apache.catalina.users.MemoryUserDatabaseFactory"</span></span></span><br><span class="line"><span class="tag">              <span class="attr">pathname</span>=<span class="string">"conf/tomcat-users.xml"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">GlobalNamingResources</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">Service</span> <span class="attr">name</span>=<span class="string">"Catalina"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">"8080"</span> <span class="attr">protocol</span>=<span class="string">"HTTP/1.1"</span></span></span><br><span class="line"><span class="tag">               <span class="attr">connectionTimeout</span>=<span class="string">"20000"</span></span></span><br><span class="line"><span class="tag">               <span class="attr">redirectPort</span>=<span class="string">"8443"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Engine</span> <span class="attr">name</span>=<span class="string">"Catalina"</span> <span class="attr">defaultHost</span>=<span class="string">"localhost"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">Realm</span> <span class="attr">className</span>=<span class="string">"org.apache.catalina.realm.LockOutRealm"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Realm</span> <span class="attr">className</span>=<span class="string">"org.apache.catalina.realm.UserDatabaseRealm"</span></span></span><br><span class="line"><span class="tag">               <span class="attr">resourceName</span>=<span class="string">"UserDatabase"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">Realm</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">Host</span> <span class="attr">name</span>=<span class="string">"localhost"</span>  <span class="attr">appBase</span>=<span class="string">"webapps"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">unpackWARs</span>=<span class="string">"true"</span> <span class="attr">autoDeploy</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">Valve</span> <span class="attr">className</span>=<span class="string">"org.apache.catalina.valves.AccessLogValve"</span> <span class="attr">directory</span>=<span class="string">"logs"</span></span></span><br><span class="line"><span class="tag">               <span class="attr">prefix</span>=<span class="string">"localhost_access_log"</span> <span class="attr">suffix</span>=<span class="string">".txt"</span></span></span><br><span class="line"><span class="tag">               <span class="attr">pattern</span>=<span class="string">"%h %l %u %t &amp;quot;%r&amp;quot; %s %b"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">Host</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Engine</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Service</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Server</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这里我们值得注意的就是 <code>Server</code>、<code>Service</code> 和 <code>Connector</code> 以及 <code>Host</code></p>
 <ul>
 <li>Server<ul>
@@ -312,29 +245,8 @@
 <p>所以当我们访问 <code>localhost:8080</code> 访问到了 webapps 目录下的ROOT，而访问 <code>localhost:8080/FlogShiro</code> 则访问到了指定FlogShiro项目。</p>
 <h3 id="虚拟主机"><a href="#虚拟主机" class="headerlink" title="虚拟主机"></a>虚拟主机</h3><p>为什么我们访问 <code>localhost</code> 和 <code>127.0.0.1</code> 访问到的东西是一样，因为本机已经做好了IP和域名的本地映射</p>
 <p>找到 C:\Windows\System32\drivers\etc 中的<code>hosts</code>文件(C为系统盘)</p>
-<pre><code># Copyright (c) 1993-2009 Microsoft Corp.
-#
-# This is a sample HOSTS file used by Microsoft TCP/IP for Windows.
-#
-# This file contains the mappings of IP addresses to host names. Each
-# entry should be kept on an individual line. The IP address should
-# be placed in the first column followed by the corresponding host name.
-# The IP address and the host name should be separated by at least one
-# space.
-#
-# Additionally, comments (such as these) may be inserted on individual
-# lines or following the machine name denoted by a &#39;#&#39; symbol.
-#
-# For example:
-#
-#      102.54.94.97     rhino.acme.com          # source server
-#       38.25.63.10     x.acme.com              # x client host
-
-# localhost name resolution is handled within DNS itself.
-# 本地主机名称解析是在DNS本身内处理的。
-#    127.0.0.1       localhost
-#    ::1             localhost
-</code></pre><p>你可以按照上面的 <code>example</code> 添加虚拟主机名称，这样Tomcat配置文件夹下server.xml中Host属性name可以使用添加的主机名称。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Copyright (c) 1993-2009 Microsoft Corp.</span><br><span class="line">#</span><br><span class="line"># This is a sample HOSTS file used by Microsoft TCP/IP for Windows.</span><br><span class="line">#</span><br><span class="line"># This file contains the mappings of IP addresses to host names. Each</span><br><span class="line"># entry should be kept on an individual line. The IP address should</span><br><span class="line"># be placed in the first column followed by the corresponding host name.</span><br><span class="line"># The IP address and the host name should be separated by at least one</span><br><span class="line"># space.</span><br><span class="line">#</span><br><span class="line"># Additionally, comments (such as these) may be inserted on individual</span><br><span class="line"># lines or following the machine name denoted by a &apos;#&apos; symbol.</span><br><span class="line">#</span><br><span class="line"># For example:</span><br><span class="line">#</span><br><span class="line">#      102.54.94.97     rhino.acme.com          # source server</span><br><span class="line">#       38.25.63.10     x.acme.com              # x client host</span><br><span class="line"></span><br><span class="line"># localhost name resolution is handled within DNS itself.</span><br><span class="line"># 本地主机名称解析是在DNS本身内处理的。</span><br><span class="line">#	127.0.0.1       localhost</span><br><span class="line">#	::1             localhost</span><br></pre></td></tr></table></figure>
+<p>你可以按照上面的 <code>example</code> 添加虚拟主机名称，这样Tomcat配置文件夹下server.xml中Host属性name可以使用添加的主机名称。</p>
 <blockquote>
 <p>当然如果你不想在 webapps 中添加项目，你也可以新添加的主机中配置其他文件夹问根目录。</p>
 <p>注意：在访问中(具体得看实际情况)，webapps 中可能存在一些会发生冲突的项目名，如 manager</p>

@@ -127,62 +127,34 @@
     <div class="post-content ">
         <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>操作系统：Windows 10 | MySQL 版本 8.0.16 | 博客记录时间：2020/3/1 16:05</p>
 <h3 id="安装-MySQL-Community-Server"><a href="#安装-MySQL-Community-Server" class="headerlink" title="安装 MySQL Community Server"></a>安装 MySQL Community Server</h3><p>进入 MySQL官网 <a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">下载最新版</a> 或 <a href="https://downloads.mysql.com/archives/community/" target="_blank" rel="noopener">其他版本</a> ZIP Archive：</p>
-<p><img src="/image/mysql/fast-use-mysql01.png" alt="fast-use-mysql01"></p>
+<p><img src="/blog/image/mysql/fast-use-mysql01.png" alt="fast-use-mysql01"></p>
 <blockquote>
 <p>当前最高版本是8.0.19，我们这里拿8.0.16做演示，目前来说8系列安装都差不多</p>
 </blockquote>
 <p>点击下载后进入到下个页面，选择 No thanks, just start my download：</p>
-<p><img src="/image/mysql/fast-use-mysql02.png" alt="fast-use-mysql02"></p>
+<p><img src="/blog/image/mysql/fast-use-mysql02.png" alt="fast-use-mysql02"></p>
 <p>下载完之后进行解压，这里我们把压缩包解压在 F:\mysql</p>
 <p>以 <strong>管理员的身份</strong> 打开 cmd 命令行工具，切换目录并输入 mysql 如下：</p>
-<pre><code class="shell">cd F:\mysql\bin
-mysql
-// 如果输出如下，就可以开始装载服务了
-ERROR 2003 (HY000): Can&#39;t connect to MySQL server on &#39;localhost&#39; (10061)
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd F:\mysql\bin</span><br><span class="line">mysql</span><br><span class="line">// 如果输出如下，就可以开始装载服务了</span><br><span class="line">ERROR 2003 (HY000): Can't connect to MySQL server on 'localhost' (10061)</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>如果你的系统特别干净，可能会跳出提示框提示你缺少dll文件，只要把 <a href="/blog/css/images/article/mysql/msvcp140.dll">msvcp140.dll</a> 和 <a href="/blog/css/images/article/mysql/vcruntime140.dll">vcruntime140.dll</a> 放在 系统盘的Windows\System32 文件夹下再输入 mysql 就可以了。</p>
+<p>如果你的系统特别干净，可能会跳出提示框提示你缺少dll文件，只要把 <a href="/blog/other/msvcp140.dll">msvcp140.dll</a> 和 <a href="/blog/other/vcruntime140.dll">vcruntime140.dll</a> 放在 系统盘的Windows\System32 文件夹下再输入 mysql 就可以了。</p>
 </blockquote>
 <h3 id="配置-MySQL-服务"><a href="#配置-MySQL-服务" class="headerlink" title="配置 MySQL 服务"></a>配置 MySQL 服务</h3><p>在配置 MySQL 服务之前，我们先配置下 MySQL 的配置文件，创建名为 <strong>my.ini</strong> 的文件在 F:\mysql\ 目录下，配置内容如下：</p>
-<pre><code class="ini">[client]
-# 设置mysql客户端默认字符集
-default-character-set=utf8mb4
-
-[mysqld]
-# 设置3306端口
-port = 3306
-# 设置mysql的安装目录
-basedir=F:\\mysql
-# 设置 mysql数据库的数据的存放目录，MySQL 8+ 不需要以下配置，系统自己生成即可，否则有可能报错
-# datadir=F:\\sqldata
-# 允许最大连接数
-max_connections=100
-# 服务端使用的字符集默认为8比特编码的latin1字符集
-character-set-server=utf8mb4
-# 创建新表时将使用的默认存储引擎
-default-storage-engine=INNODB
-</code></pre>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[client]</span></span><br><span class="line"><span class="comment"># 设置mysql客户端默认字符集</span></span><br><span class="line"><span class="attr">default-character-set</span>=utf8mb4</span><br><span class="line"></span><br><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="comment"># 设置3306端口</span></span><br><span class="line"><span class="attr">port</span> = <span class="number">3306</span></span><br><span class="line"><span class="comment"># 设置mysql的安装目录</span></span><br><span class="line"><span class="attr">basedir</span>=F:\\mysql</span><br><span class="line"><span class="comment"># 设置 mysql数据库的数据的存放目录，MySQL 8+ 不需要以下配置，系统自己生成即可，否则有可能报错</span></span><br><span class="line"><span class="comment"># datadir=F:\\sqldata</span></span><br><span class="line"><span class="comment"># 允许最大连接数</span></span><br><span class="line"><span class="attr">max_connections</span>=<span class="number">100</span></span><br><span class="line"><span class="comment"># 服务端使用的字符集默认为8比特编码的latin1字符集</span></span><br><span class="line"><span class="attr">character-set-server</span>=utf8mb4</span><br><span class="line"><span class="comment"># 创建新表时将使用的默认存储引擎</span></span><br><span class="line"><span class="attr">default-storage-engine</span>=INNODB</span><br></pre></td></tr></table></figure>
 <p>之后我们再使用 cmd 命令行工具初始化数据库：</p>
-<pre><code class="shell">mysqld --initialize --console
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mysqld --initialize --console</span><br></pre></td></tr></table></figure>
 <ul>
 <li>–initialize : 初始化</li>
 <li>–console : 输出在控制台</li>
 </ul>
 <p>执行完成后，会输出 root 用户的初始化密码，如下：</p>
-<pre><code class="shell">....
-[Note] [MY-010454] [Server] A temporary password is generated for root@localhost: g)tqN+Oia4_a
-....
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">....</span><br><span class="line">[Note] [MY-010454] [Server] A temporary password is generated for root@localhost: g)tqN+Oia4_a</span><br><span class="line">....</span><br></pre></td></tr></table></figure>
 <p><strong>g)tqN+Oia4_a</strong> 就是初始化密码，之后登入会用到：</p>
 <p>输入以下安装命令：</p>
-<pre><code class="shell">mysqld install
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mysqld install</span><br></pre></td></tr></table></figure>
 <p>之后启动服务：</p>
-<pre><code class="shell">net start mysql
-</code></pre>
-<h3 id="登入MySQL"><a href="#登入MySQL" class="headerlink" title="登入MySQL"></a>登入MySQL</h3><pre><code class="shell">mysql -h 主机名 -u 用户名 -p
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">net start mysql</span><br></pre></td></tr></table></figure>
+<h3 id="登入MySQL"><a href="#登入MySQL" class="headerlink" title="登入MySQL"></a>登入MySQL</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mysql -h 主机名 -u 用户名 -p</span><br></pre></td></tr></table></figure>
 <p>参数说明：</p>
 <ul>
 <li>-h：指定客户端要登录的 MySQL 主机名，登录本机（localhost 或 127.0.0.1）该参数可以省略；</li>
@@ -190,66 +162,25 @@ default-storage-engine=INNODB
 <li>-p：告诉服务器将会使用一个密码来登录，如果所要登录的用户名密码为空, 可以忽略此选项。</li>
 </ul>
 <p>登入实例如下：</p>
-<pre><code class="shell">mysql -u root -p
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
 <p>按 Enter 键后确认，如果MySQL正在运行则会得到如下响应：</p>
-<pre><code class="shell">Enter password:
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Enter password:</span><br></pre></td></tr></table></figure>
 <p>输入刚才的密码：<strong>g)tqN+Oia4_a</strong></p>
-<pre><code class="shell">Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 9
-Server version: 8.0.16 MySQL Community Server - GPL
-
-Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.
-mysql&gt;
-
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 9</span><br><span class="line">Server version: 8.0.16 MySQL Community Server - GPL</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.</span><br><span class="line"><span class="meta">mysql&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure>
 <p>如果输出为以上的内容说明已经可以登录 MySQL 了。</p>
 <h3 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h3><p>值得一提的是MySQL 8和低版本的MySQL修改密码的方式有差别，而且密码的编码方式也有区别</p>
-<pre><code class="mysql">mysql&gt; ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;qwe123&#39;;
-Query OK, 0 rows affected (0.34 sec)
-
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysql&gt; ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;qwe123&apos;;</span><br><span class="line">Query OK, 0 rows affected (0.34 sec)</span><br></pre></td></tr></table></figure>
 <p>如果你使用数据库连接工具，如 <strong>Navicat Premium</strong> 连接的时候可能在当前版本得修改密码编码方式，否者会提示：</p>
 <blockquote>
 <p>[ERROR 2059] - Authentication plugin ‘caching_sha2_password’ cannot be loaded…</p>
 </blockquote>
 <p>修改密码编码方式如下：</p>
-<pre><code class="mysql">mysql&gt; ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;qwe123&#39;;
-Query OK, 0 rows affected (0.12 sec)
-mysql&gt; FLUSH PRIVILEGES;
-Query OK, 0 rows affected (0.04 sec)
-mysql&gt; SELECT HOST,USER,PLUGIN FROM MYSQL.USER;
-+-----------+------------------+-----------------------+
-| HOST      | USER             | PLUGIN                |
-+-----------+------------------+-----------------------+
-| localhost | mysql.infoschema | caching_sha2_password |
-| localhost | mysql.session    | caching_sha2_password |
-| localhost | mysql.sys        | caching_sha2_password |
-| localhost | root             | mysql_native_password |
-+-----------+------------------+-----------------------+
-4 rows in set (0.00 sec)
-
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysql&gt; ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED WITH mysql_native_password BY &apos;qwe123&apos;;</span><br><span class="line">Query OK, 0 rows affected (0.12 sec)</span><br><span class="line">mysql&gt; FLUSH PRIVILEGES;</span><br><span class="line">Query OK, 0 rows affected (0.04 sec)</span><br><span class="line">mysql&gt; SELECT HOST,USER,PLUGIN FROM MYSQL.USER;</span><br><span class="line">+-----------+------------------+-----------------------+</span><br><span class="line">| HOST      | USER             | PLUGIN                |</span><br><span class="line">+-----------+------------------+-----------------------+</span><br><span class="line">| localhost | mysql.infoschema | caching_sha2_password |</span><br><span class="line">| localhost | mysql.session    | caching_sha2_password |</span><br><span class="line">| localhost | mysql.sys        | caching_sha2_password |</span><br><span class="line">| localhost | root             | mysql_native_password |</span><br><span class="line">+-----------+------------------+-----------------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
 <p>可以看到用户为 root 的 PLUGIN 已经改成了 mysql_native_password。</p>
 <p>到这里就一切准备就绪了！</p>
 <h2 id="删除-MySQL-Community-Server"><a href="#删除-MySQL-Community-Server" class="headerlink" title="删除 MySQL Community Server"></a>删除 MySQL Community Server</h2><h3 id="停止服务"><a href="#停止服务" class="headerlink" title="停止服务"></a>停止服务</h3><p>使用管理员身份打开 CMD ，输入net stop mysql：</p>
-<pre><code class="shell">net stop mysql
-MySQL 服务正在停止...
-MySQL 服务已成功停止。
-// 如果不是管理员身份可能发生下面的情况
-发生系统错误 5。
-拒接访问。
-</code></pre>
-<h3 id="删除-Windows-注册表"><a href="#删除-Windows-注册表" class="headerlink" title="删除 Windows 注册表"></a>删除 Windows 注册表</h3><pre><code class="shell">sc delete mysql
-[SC] DeleteService 成功
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">net stop mysql</span><br><span class="line">MySQL 服务正在停止...</span><br><span class="line">MySQL 服务已成功停止。</span><br><span class="line">// 如果不是管理员身份可能发生下面的情况</span><br><span class="line">发生系统错误 5。</span><br><span class="line">拒接访问。</span><br></pre></td></tr></table></figure>
+<h3 id="删除-Windows-注册表"><a href="#删除-Windows-注册表" class="headerlink" title="删除 Windows 注册表"></a>删除 Windows 注册表</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sc delete mysql</span><br><span class="line">[SC] DeleteService 成功</span><br></pre></td></tr></table></figure>
 <h3 id="删除环境变量"><a href="#删除环境变量" class="headerlink" title="删除环境变量"></a>删除环境变量</h3><p>如果之前有配置环境变量的话，将Path里关于MySQL的环境变量删除即可</p>
 <h3 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h3><ul>
 <li><a href="https://www.runoob.com/mysql/mysql-install.html" target="_blank" rel="noopener">MySQL 安装 | 菜鸟教程</a></li>

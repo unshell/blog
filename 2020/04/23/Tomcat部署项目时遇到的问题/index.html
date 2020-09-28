@@ -127,57 +127,15 @@
     <div class="post-content ">
         <h3 id="1-org-apache-catalina-webresources-Cache-getResource-Unable-to-add-the-resource"><a href="#1-org-apache-catalina-webresources-Cache-getResource-Unable-to-add-the-resource" class="headerlink" title="1.org.apache.catalina.webresources.Cache.getResource Unable to add the resource"></a>1.org.apache.catalina.webresources.Cache.getResource Unable to add the resource</h3><p><strong>原因：</strong>资源缓存空间不足，得配置更大的资源缓存空间</p>
 <p><strong>解决方法：</strong>修改 Tomcat 文件夹下 conf 文件中的 context.xml 文件，添加内容如下：</p>
-<pre><code class="xml">&lt;Context&gt;
-    &lt;Resources cachingAllowed=&quot;true&quot; cacheMaxSize=&quot;150000&quot; &gt;&lt;/Resources&gt;
-&lt;/Context&gt;
-</code></pre>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Context</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">Resources</span> <span class="attr">cachingAllowed</span>=<span class="string">"true"</span> <span class="attr">cacheMaxSize</span>=<span class="string">"150000"</span> &gt;</span><span class="tag">&lt;/<span class="name">Resources</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Context</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h3 id="2-org-apache-catalina-core-NamingContextListener-lifecycleEvent-naming-namingContextCreationFailed"><a href="#2-org-apache-catalina-core-NamingContextListener-lifecycleEvent-naming-namingContextCreationFailed" class="headerlink" title="2.org.apache.catalina.core.NamingContextListener.lifecycleEvent naming.namingContextCreationFailed"></a>2.org.apache.catalina.core.NamingContextListener.lifecycleEvent naming.namingContextCreationFailed</h3><p><strong>原因</strong>：命名监听器创建失败</p>
 <h3 id="3-org-apache-jasper-servlet-TldScanner-scanJars-至少有一个JAR被扫描用于TLD但尚未包含TLD。-为此记录器启用调试日志记录，以获取已扫描但未在其中找到TLD的完整JAR列表。-在扫描期间跳过不需要的JAR可以缩短启动时间和JSP编译时间。"><a href="#3-org-apache-jasper-servlet-TldScanner-scanJars-至少有一个JAR被扫描用于TLD但尚未包含TLD。-为此记录器启用调试日志记录，以获取已扫描但未在其中找到TLD的完整JAR列表。-在扫描期间跳过不需要的JAR可以缩短启动时间和JSP编译时间。" class="headerlink" title="3.org.apache.jasper.servlet.TldScanner.scanJars 至少有一个JAR被扫描用于TLD但尚未包含TLD。 为此记录器启用调试日志记录，以获取已扫描但未在其中找到TLD的完整JAR列表。 在扫描期间跳过不需要的JAR可以缩短启动时间和JSP编译时间。"></a>3.org.apache.jasper.servlet.TldScanner.scanJars 至少有一个JAR被扫描用于TLD但尚未包含TLD。 为此记录器启用调试日志记录，以获取已扫描但未在其中找到TLD的完整JAR列表。 在扫描期间跳过不需要的JAR可以缩短启动时间和JSP编译时间。</h3><p><strong>等级：</strong>警告</p>
 <p><strong>解决方法:</strong></p>
 <p><strong>1.修改 Tomcat 文件夹下 conf 文件夹中 logging.properties 文件</strong></p>
-<pre><code class="properties"># 输出被扫描TLD的Jar包的列表
-org.apache.jasper.servlet.TldScanner.level = FINE
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 输出被扫描TLD的Jar包的列表</span><br><span class="line">org.apache.jasper.servlet.TldScanner.level = FINE</span><br></pre></td></tr></table></figure>
 <p><strong>2.重新运行 Tomcat ，日志输出扫描的Jar包</strong></p>
 <p><strong>3.修改 Tomcat 文件夹下 conf 文件夹中 catalina.properties 文件</strong></p>
-<pre><code class="properties"># Default list of JAR files that should not be scanned using the JarScanner
-# functionality. This is typically used to scan JARs for configuration
-# information. JARs that do not contain such information may be excluded from
-# the scan to speed up the scanning process. This is the default list. JARs on
-# this list are excluded from all scans. The list must be a comma separated list
-# of JAR file names.
-# The list of JARs to skip may be over-ridden at a Context level for individual
-# scan types by configuring a JarScanner with a nested JarScanFilter.
-# The JARs listed below include:
-# - Tomcat Bootstrap JARs
-# - Tomcat API JARs
-# - Catalina JARs
-# - Jasper JARs
-# - Tomcat JARs
-# - Common non-Tomcat JARs
-# - Test JARs (JUnit, Cobertura and dependencies)
-tomcat.util.scan.StandardJarScanFilter.jarsToSkip=\
-annotations-api.jar,\ant-junit*.jar,\ant-launcher.jar,\
-ant.jar,\asm-*.jar,\aspectj*.jar,\bootstrap.jar,\catalina-ant.jar,\catalina-ha.jar,\
-catalina-ssi.jar,\catalina-storeconfig.jar,\catalina-tribes.jar,\catalina.jar,\cglib-*.jar,\
-cobertura-*.jar,\commons-beanutils*.jar,\commons-codec*.jar,\commons-collections*.jar,\
-commons-daemon.jar,\commons-dbcp*.jar,\commons-digester*.jar,\
-commons-fileupload*.jar,\commons-httpclient*.jar,\commons-io*.jar,\commons-lang*.jar,\
-commons-logging*.jar,\commons-math*.jar,\commons-pool*.jar,\dom4j-*.jar,\easymock-*.jar,\
-ecj-*.jar,\el-api.jar,\geronimo-spec-jaxrpc*.jar,\h2*.jar,\hamcrest-*.jar,\hibernate*.jar,\
-httpclient*.jar,\icu4j-*.jar,\jasper-el.jar,\jasper.jar,\jaspic-api.jar,\jaxb-*.jar,\
-jaxen-*.jar,\jdom-*.jar,\jetty-*.jar,\jmx-tools.jar,\jmx.jar,\jsp-api.jar,\jstl.jar,\
-jta*.jar,\junit-*.jar,\junit.jar,\log4j*.jar,\mail*.jar,\objenesis-*.jar,\oraclepki.jar,\
-oro-*.jar,\servlet-api-*.jar,\servlet-api.jar,\slf4j*.jar,\taglibs-standard-spec-*.jar,\
-tagsoup-*.jar,\tomcat-api.jar,\tomcat-coyote.jar,\tomcat-dbcp.jar,\tomcat-i18n-*.jar,\
-tomcat-jdbc.jar,\tomcat-jni.jar,\tomcat-juli-adapters.jar,\tomcat-juli.jar,\tomcat-util-scan.jar,\
-tomcat-util.jar,\tomcat-websocket.jar,\tools.jar,\websocket-api.jar,\wsdl4j*.jar,\xercesImpl.jar,\
-xml-apis.jar,\xmlParserAPIs-*.jar,\xmlParserAPIs.jar,\xom-*.jar
-# 将要跳过扫描的包在后面添加
-# 例子：mysql-connector-*.jar,\
-# 注意以 ,\ 分隔
-</code></pre>
-
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Default list of JAR files that should not be scanned using the JarScanner</span><br><span class="line"># functionality. This is typically used to scan JARs for configuration</span><br><span class="line"># information. JARs that do not contain such information may be excluded from</span><br><span class="line"># the scan to speed up the scanning process. This is the default list. JARs on</span><br><span class="line"># this list are excluded from all scans. The list must be a comma separated list</span><br><span class="line"># of JAR file names.</span><br><span class="line"># The list of JARs to skip may be over-ridden at a Context level for individual</span><br><span class="line"># scan types by configuring a JarScanner with a nested JarScanFilter.</span><br><span class="line"># The JARs listed below include:</span><br><span class="line"># - Tomcat Bootstrap JARs</span><br><span class="line"># - Tomcat API JARs</span><br><span class="line"># - Catalina JARs</span><br><span class="line"># - Jasper JARs</span><br><span class="line"># - Tomcat JARs</span><br><span class="line"># - Common non-Tomcat JARs</span><br><span class="line"># - Test JARs (JUnit, Cobertura and dependencies)</span><br><span class="line">tomcat.util.scan.StandardJarScanFilter.jarsToSkip=\</span><br><span class="line">annotations-api.jar,\ant-junit*.jar,\ant-launcher.jar,\</span><br><span class="line">ant.jar,\asm-*.jar,\aspectj*.jar,\bootstrap.jar,\catalina-ant.jar,\catalina-ha.jar,\</span><br><span class="line">catalina-ssi.jar,\catalina-storeconfig.jar,\catalina-tribes.jar,\catalina.jar,\cglib-*.jar,\</span><br><span class="line">cobertura-*.jar,\commons-beanutils*.jar,\commons-codec*.jar,\commons-collections*.jar,\</span><br><span class="line">commons-daemon.jar,\commons-dbcp*.jar,\commons-digester*.jar,\</span><br><span class="line">commons-fileupload*.jar,\commons-httpclient*.jar,\commons-io*.jar,\commons-lang*.jar,\</span><br><span class="line">commons-logging*.jar,\commons-math*.jar,\commons-pool*.jar,\dom4j-*.jar,\easymock-*.jar,\</span><br><span class="line">ecj-*.jar,\el-api.jar,\geronimo-spec-jaxrpc*.jar,\h2*.jar,\hamcrest-*.jar,\hibernate*.jar,\</span><br><span class="line">httpclient*.jar,\icu4j-*.jar,\jasper-el.jar,\jasper.jar,\jaspic-api.jar,\jaxb-*.jar,\</span><br><span class="line">jaxen-*.jar,\jdom-*.jar,\jetty-*.jar,\jmx-tools.jar,\jmx.jar,\jsp-api.jar,\jstl.jar,\</span><br><span class="line">jta*.jar,\junit-*.jar,\junit.jar,\log4j*.jar,\mail*.jar,\objenesis-*.jar,\oraclepki.jar,\</span><br><span class="line">oro-*.jar,\servlet-api-*.jar,\servlet-api.jar,\slf4j*.jar,\taglibs-standard-spec-*.jar,\</span><br><span class="line">tagsoup-*.jar,\tomcat-api.jar,\tomcat-coyote.jar,\tomcat-dbcp.jar,\tomcat-i18n-*.jar,\</span><br><span class="line">tomcat-jdbc.jar,\tomcat-jni.jar,\tomcat-juli-adapters.jar,\tomcat-juli.jar,\tomcat-util-scan.jar,\</span><br><span class="line">tomcat-util.jar,\tomcat-websocket.jar,\tools.jar,\websocket-api.jar,\wsdl4j*.jar,\xercesImpl.jar,\</span><br><span class="line">xml-apis.jar,\xmlParserAPIs-*.jar,\xmlParserAPIs.jar,\xom-*.jar</span><br><span class="line"># 将要跳过扫描的包在后面添加</span><br><span class="line"># 例子：mysql-connector-*.jar,\</span><br><span class="line"># 注意以 ,\ 分隔</span><br></pre></td></tr></table></figure>
     </div>
 </div>
         </div>
