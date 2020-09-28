@@ -1,260 +1,286 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="阿丘的博客">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/blog/image/favicon.svg">
 
-  
-  <title>CentOs 安装 MySql | Unshell&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安装环境系统：CentOS Linux release 8.1.1911 (Core) | MySQL版本：8.0.17 | 博客记录时间：2020-4-21 15:21:36 安装MySQL查看MySQL 官网 提供的 MySQL Yum Repository ，这里我们选择 Red Hat Enterprise Linux 8 &#x2F; Oracle Linux 8 (Architecture In">
-<meta property="og:type" content="article">
-<meta property="og:title" content="CentOs 安装 MySql">
-<meta property="og:url" content="https://unshell.github.io/2020/04/21/CentOs%E5%AE%89%E8%A3%85MySql/index.html">
-<meta property="og:site_name" content="Unshell&#39;s Blog">
-<meta property="og:description" content="安装环境系统：CentOS Linux release 8.1.1911 (Core) | MySQL版本：8.0.17 | 博客记录时间：2020-4-21 15:21:36 安装MySQL查看MySQL 官网 提供的 MySQL Yum Repository ，这里我们选择 Red Hat Enterprise Linux 8 &#x2F; Oracle Linux 8 (Architecture In">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-04-21T07:10:18.000Z">
-<meta property="article:modified_time" content="2020-06-12T08:26:02.795Z">
-<meta property="article:author" content="Unshell">
-<meta property="article:tag" content="linux">
-<meta property="article:tag" content="mysql">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/blog/atom.xml" title="Unshell&#39;s Blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/blog/favicon.jpg">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/blog/css/style.css">
+    <title>
+        
+        CentOs 安装 MySql - 阿丘的博客 | Unshell&#39;s Blog
+        
+    </title>
 
-<meta name="generator" content="Hexo 4.2.0"></head>
-
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/aircloud.css">
+    <!-- Icon CSS -->
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2103599_gii1mr7u70l.css" type="text/css">
+</head>
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/blog/" id="logo">Unshell&#39;s Blog</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/blog/" id="subtitle">我相信所有坚韧不拔的努力，迟早会得来好报酬。</a>
-        </h2>
-      
+    <div class="site-nav-toggle" id="site-nav-toggle">
+        <button><i class="iconfont icon-menu1"></i></button>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/blog/">home</a>
-        
-          <a class="main-nav-link" href="/blog/archives">archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://unshell.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-CentOs安装MySql" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/2020/04/21/CentOs%E5%AE%89%E8%A3%85MySql/" class="article-date">
-  <time datetime="2020-04-21T07:10:18.000Z" itemprop="datePublished">2020-04-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      CentOs 安装 MySql
-    </h1>
-  
 
-      </header>
+    <div class="index-about">
+        <i> 我相信所有坚韧不拔的努力，迟早会得来好报酬 </i>
+    </div>
+
+    <div class="index-container">
+        
+        <div class="index-left">
+            <div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/blog/image/avatar.jpeg" />
+        </div>
+        <div class="name">
+            <i>阿 丘</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/blog/">
+                    <i class="iconfont icon-home-"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/tags">
+                    <i class="iconfont icon-tags"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/archive">
+                    <i class="iconfont icon-guidang"></i>
+                    <span>归档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/about/">
+                    <i class="iconfont icon-guanyu"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo-2"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
     
-    <div class="article-entry" itemprop="articleBody">
-      
+    <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装环境"><span class="toc-text">安装环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装MySQL"><span class="toc-text">安装MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开始之前"><span class="toc-text">开始之前</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装YUM仓库"><span class="toc-text">安装YUM仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置MySQL服务"><span class="toc-text">配置MySQL服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置MySQL数据库"><span class="toc-text">配置MySQL数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开启防火墙对应端口"><span class="toc-text">开启防火墙对应端口</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#卸载MySQL"><span class="toc-text">卸载MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#相关文档"><span class="toc-text">相关文档</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="iconfont icon-chacha"></i></span>
+            <input id="search-input" />
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container"></div>
+    </div>
+</div>
+            <div class="index-about-mobile">
+                <i> 我相信所有坚韧不拔的努力，迟早会得来好报酬 </i>
+            </div>
+        </div>
+        
+        <div class="index-middle">
+            <!-- Main Content -->
+            <div class="post-container">
+    <div class="post-title">
+        CentOs 安装 MySql
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-04-21 15:10:18</span></span>
+        
+        <span class="attr">标签：/
+            
+            <a class="tag" href="/blog/tags/#linux" title="linux">linux</a>
+            <span>/</span>
+            
+            <a class="tag" href="/blog/tags/#mysql" title="mysql">mysql</a>
+            <span>/</span>
+            
+            
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+        </span>
+        </span>
+    </div>
+    <div class="post-content ">
         <h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><p>系统：CentOS Linux release 8.1.1911 (Core) | MySQL版本：8.0.17 | 博客记录时间：2020-4-21 15:21:36</p>
 <h2 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h2><p>查看MySQL <a href="https://www.mysql.com/" target="_blank" rel="noopener">官网</a> 提供的 <a href="https://dev.mysql.com/downloads/repo/yum/" target="_blank" rel="noopener">MySQL Yum Repository</a> ，这里我们选择 <strong>Red Hat Enterprise Linux 8 / Oracle Linux 8 (Architecture Independent), RPM Package</strong></p>
 <blockquote>
 <p>根据自己的 Linux 版本挑选 RPM Package 版本，这里演示的环境是 Linux 8</p>
 </blockquote>
-<h3 id="开始之前"><a href="#开始之前" class="headerlink" title="开始之前"></a>开始之前</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 直接切换成root账号,避免权限不足造成其他问题</span></span><br><span class="line">[unshell@localhost /]$ su root</span><br><span class="line">Password: </span><br><span class="line">[root@localhost /]# </span><br><span class="line"><span class="meta">#</span><span class="bash"> 当然你如果不想切换账号,那在需要权限的命令前加上sudo</span></span><br><span class="line">[unshell@localhost /]$ sudo [需要权限的命令]</span><br><span class="line">Password:</span><br></pre></td></tr></table></figure>
+<h3 id="开始之前"><a href="#开始之前" class="headerlink" title="开始之前"></a>开始之前</h3><pre><code class="shell"># 直接切换成root账号,避免权限不足造成其他问题
+[unshell@localhost /]$ su root
+Password: 
+[root@localhost /]# 
+# 当然你如果不想切换账号,那在需要权限的命令前加上sudo
+[unshell@localhost /]$ sudo [需要权限的命令]
+Password:
+</code></pre>
+<h3 id="安装YUM仓库"><a href="#安装YUM仓库" class="headerlink" title="安装YUM仓库"></a>安装YUM仓库</h3><pre><code class="bash"># 下载到当前目录下
+wget https://repo.mysql.com//mysql80-community-release-el8-1.noarch.rpm
+# 使用 yum 本地安装
+yum localinstall mysql80-community-release-el8-1.noarch.rpm
+# 查看包源是否安装成功
+yum repolist enabled | grep &quot;mysql.*-community.*&quot;
+# 输出内容如下
+mysql-connectors-community           MySQL Connectors Community              42
+mysql-tools-community                MySQL Tools Community                   19
+mysql80-community                    MySQL 8.0 Community Server              31
+</code></pre>
+<h3 id="配置MySQL服务"><a href="#配置MySQL服务" class="headerlink" title="配置MySQL服务"></a>配置MySQL服务</h3><pre><code class="bash"># 安装MySQL服务
+yum install mysql-server
+# 启动MySQL服务
+systemctl start mysqld
+# 查看MySQL服务状态
+systemctl status mysqld
+# 输出如下则表示开启
+● mysqld.service - MySQL 8.0 database server
+   Loaded: loaded (/usr/lib/systemd/system/mysqld.service; disabled; vendor preset: disabled)
+   Active: active (running) since Tue 2020-04-21 16:22:47 CST; 10s ago
+  Process: 11914 ExecStartPost=/usr/libexec/mysql-check-upgrade (code=exited, status=0/SUCCESS)
+  Process: 11787 ExecStartPre=/usr/libexec/mysql-prepare-db-dir mysqld.service (code=exited, status=0/SUCCESS)
+  Process: 11763 ExecStartPre=/usr/libexec/mysql-check-socket (code=exited, status=0/SUCCESS)
+ Main PID: 11871 (mysqld)
+   Status: &quot;Server is operational&quot;
+    Tasks: 39 (limit: 4888)
+   Memory: 328.3M
+   CGroup: /system.slice/mysqld.service
+           └─11871 /usr/libexec/mysqld --basedir=/usr
+</code></pre>
+<h3 id="配置MySQL数据库"><a href="#配置MySQL数据库" class="headerlink" title="配置MySQL数据库"></a>配置MySQL数据库</h3><pre><code class="mysql"># 查看MySQL服务日志与password相关的内容
+grep &#39;password&#39; /var/log/mysql/mysqld.log
+# 演示时输出如下
+2020-04-21T08:22:41.675426Z 5 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+# 这里提示我们Server为root@localhost账号创建了个空的密码,我们这里直接登入MySQL
+mysql -u root -p
+Enter password: 
+# 直接回车，输出如下及登入成功
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.17 Source distribution
 
-<h3 id="安装YUM仓库"><a href="#安装YUM仓库" class="headerlink" title="安装YUM仓库"></a>安装YUM仓库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载到当前目录下</span></span><br><span class="line">wget https://repo.mysql.com//mysql80-community-release-el8-1.noarch.rpm</span><br><span class="line"><span class="comment"># 使用 yum 本地安装</span></span><br><span class="line">yum localinstall mysql80-community-release-el8-1.noarch.rpm</span><br><span class="line"><span class="comment"># 查看包源是否安装成功</span></span><br><span class="line">yum repolist enabled | grep <span class="string">"mysql.*-community.*"</span></span><br><span class="line"><span class="comment"># 输出内容如下</span></span><br><span class="line">mysql-connectors-community           MySQL Connectors Community              42</span><br><span class="line">mysql-tools-community                MySQL Tools Community                   19</span><br><span class="line">mysql80-community                    MySQL 8.0 Community Server              31</span><br></pre></td></tr></table></figure>
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
 
-<h3 id="配置MySQL服务"><a href="#配置MySQL服务" class="headerlink" title="配置MySQL服务"></a>配置MySQL服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装MySQL服务</span></span><br><span class="line">yum install mysql-server</span><br><span class="line"><span class="comment"># 启动MySQL服务</span></span><br><span class="line">systemctl start mysqld</span><br><span class="line"><span class="comment"># 查看MySQL服务状态</span></span><br><span class="line">systemctl status mysqld</span><br><span class="line"><span class="comment"># 输出如下则表示开启</span></span><br><span class="line">● mysqld.service - MySQL 8.0 database server</span><br><span class="line">   Loaded: loaded (/usr/lib/systemd/system/mysqld.service; disabled; vendor preset: disabled)</span><br><span class="line">   Active: active (running) since Tue 2020-04-21 16:22:47 CST; 10s ago</span><br><span class="line">  Process: 11914 ExecStartPost=/usr/libexec/mysql-check-upgrade (code=exited, status=0/SUCCESS)</span><br><span class="line">  Process: 11787 ExecStartPre=/usr/libexec/mysql-prepare-db-dir mysqld.service (code=exited, status=0/SUCCESS)</span><br><span class="line">  Process: 11763 ExecStartPre=/usr/libexec/mysql-check-socket (code=exited, status=0/SUCCESS)</span><br><span class="line"> Main PID: 11871 (mysqld)</span><br><span class="line">   Status: <span class="string">"Server is operational"</span></span><br><span class="line">    Tasks: 39 (<span class="built_in">limit</span>: 4888)</span><br><span class="line">   Memory: 328.3M</span><br><span class="line">   CGroup: /system.slice/mysqld.service</span><br><span class="line">           └─11871 /usr/libexec/mysqld --basedir=/usr</span><br></pre></td></tr></table></figure>
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
 
-<h3 id="配置MySQL数据库"><a href="#配置MySQL数据库" class="headerlink" title="配置MySQL数据库"></a>配置MySQL数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># 查看MySQL服务日志与password相关的内容</span><br><span class="line">grep &#39;password&#39; &#x2F;var&#x2F;log&#x2F;mysql&#x2F;mysqld.log</span><br><span class="line"># 演示时输出如下</span><br><span class="line">2020-04-21T08:22:41.675426Z 5 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.</span><br><span class="line"># 这里提示我们Server为root@localhost账号创建了个空的密码,我们这里直接登入MySQL</span><br><span class="line">mysql -u root -p</span><br><span class="line">Enter password: </span><br><span class="line"># 直接回车，输出如下及登入成功</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 8</span><br><span class="line">Server version: 8.0.17 Source distribution</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2019, Oracle and&#x2F;or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and&#x2F;or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.</span><br><span class="line"># 修改root@localhost的密码(这里演示修改密码为：qwe123)</span><br><span class="line">mysql&gt; ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;qwe123&#39;;</span><br><span class="line">Query OK, 0 rows affected (0.08 sec)</span><br><span class="line"># 为外网访问添加账户(%代表所有地址都可能访问,使用时根据实际情况)</span><br><span class="line">CREATE USER &#39;unshell&#39;@&#39;%&#39; IDENTIFIED BY &#39;qwe123&#39;;</span><br><span class="line"># 授予权限(这里演示提供所有权限,使用时根据实际情况)</span><br><span class="line">GRANT ALL ON *.* TO &#39;unshell&#39;@&#39;%&#39; WITH GRANT OPTION;</span><br></pre></td></tr></table></figure>
-
-<h3 id="开启防火墙对应端口"><a href="#开启防火墙对应端口" class="headerlink" title="开启防火墙对应端口"></a>开启防火墙对应端口</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开放默认3306端口</span></span><br><span class="line">firewall-cmd --add-port=3306/tcp --permanent</span><br><span class="line"><span class="comment"># 输出success说明成功</span></span><br><span class="line">success</span><br><span class="line"><span class="comment"># 更新防火墙规则</span></span><br><span class="line">firewall-cmd --reload</span><br><span class="line"><span class="comment"># 查看防火墙状况</span></span><br><span class="line">firewall-cmd --list-all</span><br><span class="line"><span class="comment"># 输出内容如下说明成功添加3306端口</span></span><br><span class="line">public (active)</span><br><span class="line">  target: default</span><br><span class="line">  icmp-block-inversion: no</span><br><span class="line">  interfaces: ens160</span><br><span class="line">  services: cockpit dhcpv6-client ssh</span><br><span class="line">  ports: 3306/tcp </span><br><span class="line"><span class="comment"># 如果未成功，可以尝试重启防火墙</span></span><br><span class="line">firewall-cmd --complete-reload</span><br></pre></td></tr></table></figure>
-
-<h2 id="卸载MySQL"><a href="#卸载MySQL" class="headerlink" title="卸载MySQL"></a>卸载MySQL</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 关闭MySQL服务</span></span><br><span class="line">systemctl stop mysqld</span><br><span class="line"><span class="comment"># 查找已安装的MySQl相关的包</span></span><br><span class="line">rpm -qa|grep -i mysql</span><br><span class="line"><span class="comment"># 移除输出的包</span></span><br><span class="line">yum remove [package]</span><br><span class="line"><span class="comment"># 查询相关的文件夹</span></span><br><span class="line">find / -name mysql</span><br><span class="line"><span class="comment"># 删除输出的文件夹</span></span><br><span class="line">rm -rf [directory]</span><br><span class="line"><span class="comment"># 有需要的话也可以3306端口</span></span><br><span class="line">firewall-cmd --permanent --remove-port=3306/tcp</span><br></pre></td></tr></table></figure>
-
+Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.
+# 修改root@localhost的密码(这里演示修改密码为：qwe123)
+mysql&gt; ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;qwe123&#39;;
+Query OK, 0 rows affected (0.08 sec)
+# 为外网访问添加账户(%代表所有地址都可能访问,使用时根据实际情况)
+CREATE USER &#39;unshell&#39;@&#39;%&#39; IDENTIFIED BY &#39;qwe123&#39;;
+# 授予权限(这里演示提供所有权限,使用时根据实际情况)
+GRANT ALL ON *.* TO &#39;unshell&#39;@&#39;%&#39; WITH GRANT OPTION;
+</code></pre>
+<h3 id="开启防火墙对应端口"><a href="#开启防火墙对应端口" class="headerlink" title="开启防火墙对应端口"></a>开启防火墙对应端口</h3><pre><code class="bash"># 开放默认3306端口
+firewall-cmd --add-port=3306/tcp --permanent
+# 输出success说明成功
+success
+# 更新防火墙规则
+firewall-cmd --reload
+# 查看防火墙状况
+firewall-cmd --list-all
+# 输出内容如下说明成功添加3306端口
+public (active)
+  target: default
+  icmp-block-inversion: no
+  interfaces: ens160
+  services: cockpit dhcpv6-client ssh
+  ports: 3306/tcp 
+# 如果未成功，可以尝试重启防火墙
+firewall-cmd --complete-reload
+</code></pre>
+<h2 id="卸载MySQL"><a href="#卸载MySQL" class="headerlink" title="卸载MySQL"></a>卸载MySQL</h2><pre><code class="bash"># 关闭MySQL服务
+systemctl stop mysqld
+# 查找已安装的MySQl相关的包
+rpm -qa|grep -i mysql
+# 移除输出的包
+yum remove [package]
+# 查询相关的文件夹
+find / -name mysql
+# 删除输出的文件夹
+rm -rf [directory]
+# 有需要的话也可以3306端口
+firewall-cmd --permanent --remove-port=3306/tcp
+</code></pre>
 <h3 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h3><ul>
 <li><a href="https://dev.mysql.com/doc/refman/8.0/en/linux-installation-yum-repo.html" target="_blank" rel="noopener">Installing MySQL on Linux Using the MySQL Yum Repository</a></li>
 </ul>
 
-      
     </div>
-    <footer class="article-footer">
-      <a data-url="https://unshell.github.io/2020/04/21/CentOs%E5%AE%89%E8%A3%85MySql/" data-id="ckbc2s3y80000qssmcltabuna" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/mysql/" rel="tag">mysql</a></li></ul>
-
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/blog/2020/04/22/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          正则表达式
-        
-      </div>
-    </a>
-  
-  
-    <a href="/blog/2020/03/03/Windows%E5%AE%89%E8%A3%85Mysql/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Windows 安装 Mysql</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/bug/" rel="tag">bug</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/fast/" rel="tag">fast</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/regex/" rel="tag">regex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/tomcat/" rel="tag">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/windows/" rel="tag">windows</a></li></ul>
+</div>
+        </div>
     </div>
-  </div>
 
-
-  
+    <footer class="footer">
+    <ul class="list-inline text-center">
+        
+        <li>
+            <a target="_blank" href="https://github.com/unshell">
+                <span class="fa-stack fa-lg">
+                    <i class="iconfont icon-github"></i>
+                </span>
+            </a>
+        </li>
+        
+    </ul>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/blog/tags/bug/" style="font-size: 10px;">bug</a> <a href="/blog/tags/fast/" style="font-size: 10px;">fast</a> <a href="/blog/tags/linux/" style="font-size: 15px;">linux</a> <a href="/blog/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/blog/tags/redis/" style="font-size: 10px;">redis</a> <a href="/blog/tags/regex/" style="font-size: 10px;">regex</a> <a href="/blog/tags/tomcat/" style="font-size: 20px;">tomcat</a> <a href="/blog/tags/windows/" style="font-size: 10px;">windows</a>
-    </div>
-  </div>
-
-  
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://hexo.io/zh-cn/">Hexo</a></span>
+        <span>/</span>
+        
+        <span><a href="http://niexiaotao.cn/">AirCloud</a></span>
+        <span>/</span>
+        
+        <span><a href="https://www.iconfont.cn/">Alibaba Icon</a></span>
+        <span>/</span>
+        
+    </p>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/06/">六月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/03/">三月 2020</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/blog/2020/06/12/CentOs%E5%AE%89%E8%A3%85Redis/">CentOs 安装 Redis</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2020/04/23/Tomcat%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">Tomcat 部署项目时遇到的问题</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2020/04/23/Tomcat%E6%9C%8D%E5%8A%A1/">Tomcat 服务</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2020/04/23/%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8Tomcat/">快速使用 Tomcat</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2020/04/22/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 Unshell<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
+    <p>@ 2018 - 2020 UnShell</p>
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+    </p>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/blog/" class="mobile-nav-link">home</a>
-  
-    <a href="/blog/archives" class="mobile-nav-link">archives</a>
-  
-</nav>
-    
-
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
-
-  
-<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/blog/js/script.js"></script>
-
-
-
-
-  </div>
 </body>
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json";
+    window.hexo_root = "/blog/";
+    window.isPost = true;
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/blog/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </html>
