@@ -2,6 +2,8 @@
 
 :root {
   --theme-color: palevioletred;
+  --code-bg-color: #f7f7f7;
+  --code-font-color: #4d4d4c !important;
 }
 
 * {
@@ -979,7 +981,7 @@ pre, .highlight {
   padding: 0;
   font-size: 13px;
   color: #4d4d4c;
-  background: #f7f7f7;
+  background: var(--code-bg-color);
   line-height: 1.6;
 }
 
@@ -998,6 +1000,7 @@ code {
 
 pre {
   padding: 10px;
+  color: var(--code-font-color);
 }
 
 pre code {
@@ -1056,7 +1059,7 @@ pre code {
   width: 100%;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: #f7f7f7;
+  /* background-color: var(--code-bg-color); */
 }
 
 .highlight .line {
@@ -1088,10 +1091,6 @@ pre .addition {
 
 pre .meta {
   color: #8959a8;
-}
-
-pre {
-  color: #8e908c;
 }
 
 pre .variable, pre .attribute, pre .tag, pre .regexp, pre .ruby .constant, pre .xml .tag .title, pre .xml .pi, pre .xml .doctype, pre .html .doctype, pre .css .id, pre .css .class, pre .css .pseudo {
