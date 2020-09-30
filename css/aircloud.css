@@ -1,4 +1,4 @@
-/*varibles*/
+/* 全局样式 */
 
 :root {
   --theme-color: palevioletred;
@@ -113,6 +113,8 @@ body {
   text-indent: 0 !important;
 }
 
+/* 导航 */
+
 .nav {
   position: relative;
   padding-top: 50px;
@@ -173,6 +175,10 @@ body {
   list-style: none;
 }
 
+.nav .contents ul li a {
+  display: block;
+}
+
 .nav .contents ul li i, .nav .contents ul li a i {
   cursor: pointer;
   color: #999999;
@@ -210,6 +216,8 @@ body {
   width: 22px;
   height: 2px;
 }
+
+/* 搜索功能 */
 
 .search-field {
   overflow: hidden;
@@ -373,6 +381,8 @@ body {
     box-shadow: 0 5px 20px -10px var(--theme-color);
   }
 }
+
+/* 主体内容 */
 
 .post-preview {
   width: 100%;
@@ -975,6 +985,8 @@ body {
   }
 }
 
+/* 主题样式 */
+
 pre, .highlight {
   overflow: auto;
   margin: 20px 0;
@@ -1116,6 +1128,8 @@ pre .function, pre .python .decorator, pre .python .title, pre .ruby .function .
 pre .keyword, pre .javascript .function {
   color: #8959a8;
 }
+
+/* 底部样式 */
 
 .footer {
   width: 100%;
@@ -1297,5 +1311,3 @@ pre .keyword, pre .javascript .function {
     display: none;
   }
 }
-
-/*# sourceMappingURL=aircloud.css.map */

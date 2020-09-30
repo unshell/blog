@@ -3,8 +3,8 @@ window.onresize = () => {
     // when window resize , we show remove some class that me be added
     // often for debug
     if (window.document.documentElement.clientWidth > 680) {
-        let aboutContent = document.getElementById('nav-content')
-        aboutContent.classList.remove('hide-block')
+        let aboutContent = document.getElementById('nav-content');
+        aboutContent.classList.remove('hide-block');
         aboutContent.classList.remove('show-block');
     }
 
@@ -14,58 +14,57 @@ window.onresize = () => {
 // Nav switch function on mobile
 const navToggle = document.getElementById('site-nav-toggle');
 navToggle.addEventListener('click', () => {
-    let aboutContent = document.getElementById('nav-content')
+    let aboutContent = document.getElementById('nav-content');
     if (!aboutContent.classList.contains('show-block')) {
         aboutContent.classList.add('show-block');
-        aboutContent.classList.remove('hide-block')
+        aboutContent.classList.remove('hide-block');
     } else {
-        aboutContent.classList.add('hide-block')
+        aboutContent.classList.add('hide-block');
         aboutContent.classList.remove('show-block');
     }
-})
-
+});
 
 // global search
-const searchButton = document.getElementById('search')
-const searchField = document.getElementById('search-field')
-const searchInput = document.getElementById('search-input')
-const searchResultContainer = document.getElementById('search-result-container')
-const escSearch = document.getElementById('esc-search')
-const beginSearch = document.getElementById('begin-search')
+const searchButton = document.getElementById('search');
+const searchField = document.getElementById('search-field');
+const searchInput = document.getElementById('search-input');
+const searchResultContainer = document.getElementById('search-result-container');
+const escSearch = document.getElementById('esc-search');
+const beginSearch = document.getElementById('begin-search');
 
 searchField.addEventListener('mousewheel', (e) => {
-    e.stopPropagation()
-    return false
-}, false)
+    e.stopPropagation();
+    return false;
+}, false);
 
 var searchJson;
-var caseSensitive = false
+var caseSensitive = false;
 
 searchButton.addEventListener('click', () => {
-    search()
+    search();
 });
 
 escSearch.addEventListener('click', () => {
-    hideSearchField()
-})
+    hideSearchField();
+});
 
 beginSearch.addEventListener('click', () => {
     let keyword = searchInput.value;
     if (keyword) {
-        searchFromKeyWord(keyword)
+        searchFromKeyWord(keyword);
     }
-})
+});
 
 function toggleSeachField() {
     if (!searchField.classList.contains('show-flex-fade')) {
-        showSearchField()
+        showSearchField();
     } else {
-        hideSearchField()
+        hideSearchField();
     }
 }
 
 function showSearchField() {
-    searchInput.focus()
+    searchInput.focus();
     searchField.classList.add('show-flex-fade');
     searchField.classList.remove('hide-flex-fade');
 }
@@ -81,10 +80,10 @@ function searchFromKeyWord(keyword = "") {
 
     let sildeWindowSize = 100;
 
-    let handleKeyword = keyword
+    let handleKeyword = keyword;
 
     if (!caseSensitive) {
-        handleKeyword = keyword.toLowerCase()
+        handleKeyword = keyword.toLowerCase();
     }
     if (!searchJson) return -1;
     else {
@@ -92,7 +91,7 @@ function searchFromKeyWord(keyword = "") {
 
             if (!item.title || !item.content) return 0; // break
 
-            let title = item.title
+            let title = item.title;
             let content = item.content.trim().replace(/<[^>]+>/g, "").replace(/[`#\n]/g, "");
 
             let lowerTitle = title, lowerContent = content;
@@ -104,24 +103,24 @@ function searchFromKeyWord(keyword = "") {
 
 
             if (lowerTitle.indexOf(handleKeyword) !== -1 || lowerContent.indexOf(handleKeyword) !== -1) {
-                let resultItem = {}
+                let resultItem = {};
                 resultItem.title = title.replace(keyword, "<span class='red'>" + keyword + '</span>');
                 resultItem.url = item.url;
 
                 resultItem.content = [];
 
-                let lastend = 0
+                let lastend = 0;
 
                 while (lowerContent.indexOf(handleKeyword) !== -1) {
-                    let begin = lowerContent.indexOf(handleKeyword) - sildeWindowSize / 2 < 0 ? 0 : lowerContent.indexOf(handleKeyword) - sildeWindowSize / 2
+                    let begin = lowerContent.indexOf(handleKeyword) - sildeWindowSize / 2 < 0 ? 0 : lowerContent.indexOf(handleKeyword) - sildeWindowSize / 2;
                     let end = begin + sildeWindowSize;
-                    let reg = caseSensitive ? new RegExp('(' + keyword + ')', 'g') : new RegExp('(' + keyword + ')', 'ig')
-                    resultItem.content.push("..." + content.slice(lastend + begin, lastend + end).replace(reg, "<span class='red'>$1</span>") + "...")
-                    lowerContent = lowerContent.slice(end, lowerContent.length)
-                    lastend = end
+                    let reg = caseSensitive ? new RegExp('(' + keyword + ')', 'g') : new RegExp('(' + keyword + ')', 'ig');
+                    resultItem.content.push("..." + content.slice(lastend + begin, lastend + end).replace(reg, "<span class='red'>$1</span>") + "...");
+                    lowerContent = lowerContent.slice(end, lowerContent.length);
+                    lastend = end;
                 }
                 // resultItem.title = title.replace(keyword, "<span class='red'>" + keyword + '</span>');
-                result.push(resultItem)
+                result.push(resultItem);
             }
         })
     }
@@ -133,44 +132,44 @@ function searchFromKeyWord(keyword = "") {
         return;
     }
 
-    let searchFragment = document.createElement('ul')
+    let searchFragment = document.createElement('ul');
 
     for (let item of result) {
         let searchItem = document.createElement('li');
         let searchTitle = document.createElement('a');
-        searchTitle.href = item.url
+        searchTitle.href = item.url;
         searchTitle.innerHTML = item.title;
-        searchItem.appendChild(searchTitle)
+        searchItem.appendChild(searchTitle);
         if (item.content.length) {
-            let searchContentLiContainer = document.createElement('ul')
+            let searchContentLiContainer = document.createElement('ul');
             for (let citem of item.content) {
-                let searchContentFragment = document.createElement('li')
+                let searchContentFragment = document.createElement('li');
                 searchContentFragment.innerHTML = citem;
-                searchContentLiContainer.appendChild(searchContentFragment)
+                searchContentLiContainer.appendChild(searchContentFragment);
             }
-            searchItem.appendChild(searchContentLiContainer)
+            searchItem.appendChild(searchContentLiContainer);
         }
-        searchFragment.appendChild(searchItem)
+        searchFragment.appendChild(searchItem);
     }
     while (searchResultContainer.firstChild) {
-        searchResultContainer.removeChild(searchResultContainer.firstChild)
+        searchResultContainer.removeChild(searchResultContainer.firstChild);
     }
-    searchResultContainer.appendChild(searchFragment)
+    searchResultContainer.appendChild(searchFragment);
 }
 
 function search() {
 
-    toggleSeachField()
+    toggleSeachField();
 
     window.onkeydown = (e) => {
         if (e.which === 27) {
             /** 这里编写当ESC按下时的处理逻辑！ */
-            toggleSeachField()
+            toggleSeachField();
         } else if (e.which === 13) {
             // 回车按下
             let keyword = searchInput.value;
             if (keyword) {
-                searchFromKeyWord(keyword)
+                searchFromKeyWord(keyword);
             }
         }
     }
@@ -200,7 +199,6 @@ function search() {
             }
         });
     }
-
 }
 
 // directory function in post pages
@@ -218,7 +216,7 @@ function getDistanceOfLeft(obj) {
     };
 }
 
-var toc = document.getElementById('toc')
+var toc = document.getElementById('toc');
 
 var tocToTop = getDistanceOfLeft(toc).top;
 
@@ -232,7 +230,7 @@ function reHeightToc() {
 reHeightToc();
 
 if (window.isPost) {
-    var result = []
+    var result = [];
 
     var nameSet = new Set();
 
@@ -241,105 +239,105 @@ if (window.isPost) {
     }
     else {
         if (toc.children[0].nodeName === "OL") {
-            let ol = Array.from(toc.children[0].children)
+            let ol = Array.from(toc.children[0].children);
 
             function getArrayFromOl(ol) {
-                let result = []
+                let result = [];
 
                 ol.forEach((item) => {
                     if (item.children.length === 1) {
                         // TODO: need change
-                        let value = item.children[0].getAttribute('href').replace(/^#/, "")
+                        let value = item.children[0].getAttribute('href').replace(/^#/, "");
                         result.push({
                             value: [value],
                             dom: item
-                        })
-                        nameSet.add(value)
+                        });
+                        nameSet.add(value);
                     }
                     else {
-                        let concatArray = getArrayFromOl(Array.from(item.children[1].children))
-                        nameSet.add(item.children[0].getAttribute('href').replace(/^#/, ""))
+                        let concatArray = getArrayFromOl(Array.from(item.children[1].children));
+                        nameSet.add(item.children[0].getAttribute('href').replace(/^#/, ""));
                         result.push({
                             value: [item.children[0].getAttribute('href').replace(/^#/, "")].concat(concatArray.reduce((p, n) => {
-                                p = p.concat(n.value)
+                                p = p.concat(n.value);
                                 return p;
                             }, [])),
                             dom: item
-                        })
-                        result = result.concat(concatArray)
+                        });
+                        result = result.concat(concatArray);
                     }
                 })
-                return result
+                return result;
             }
 
-            result = getArrayFromOl(ol)
+            result = getArrayFromOl(ol);
         }
 
-        var nameArray = Array.from(nameSet)
+        var nameArray = Array.from(nameSet);
 
         function reLayout() {
-            let scrollToTop = document.documentElement.scrollTop || window.pageYOffset // Safari is special
+            let scrollToTop = document.documentElement.scrollTop || window.pageYOffset; // Safari is special
             if (tocToTop === 0) {
                 // Fix bug that when resize window the toc layout may be wrong
-                toc = document.getElementById('toc')
-                toc.classList.remove('toc-fixed')
+                toc = document.getElementById('toc');
+                toc.classList.remove('toc-fixed');
                 tocToTop = getDistanceOfLeft(toc).top;
             }
             if (tocToTop <= scrollToTop + 10) {
                 if (!toc.classList.contains('toc-fixed'))
-                    toc.classList.add('toc-fixed')
+                    toc.classList.add('toc-fixed');
             } else {
                 if (toc.classList.contains('toc-fixed'))
-                    toc.classList.remove('toc-fixed')
+                    toc.classList.remove('toc-fixed');
             }
 
             let minTop = 9999;
-            let minTopsValue = ""
+            let minTopsValue = "";
 
             for (let item of nameArray) {
-                let dom = document.getElementById(item) || document.getElementById(item.replace(/\s/g, ''))
-                if (!dom) continue
+                let dom = document.getElementById(item) || document.getElementById(item.replace(/\s/g, ''));
+                if (!dom) continue;
                 let toTop = getDistanceOfLeft(dom).top - scrollToTop;
 
                 if (Math.abs(toTop) < minTop) {
-                    minTop = Math.abs(toTop)
-                    minTopsValue = item
+                    minTop = Math.abs(toTop);
+                    minTopsValue = item;
                 }
             }
 
             if (minTopsValue) {
                 for (let item of result) {
                     if (item.value.indexOf(minTopsValue) !== -1) {
-                        item.dom.classList.add("active")
+                        item.dom.classList.add("active");
                     } else {
-                        item.dom.classList.remove("active")
+                        item.dom.classList.remove("active");
                     }
                 }
             }
         }
 
-        reLayout()
+        reLayout();
 
         window.addEventListener('scroll', function (e) {
-            reLayout()
-        })
+            reLayout();
+        });
     }
 }
 
 
 // donate
-const donateButton = document.getElementById('donate-button')
-const donateImgContainer = document.getElementById('donate-img-container')
-const donateImg = document.getElementById('donate-img')
+const donateButton = document.getElementById('donate-button');
+const donateImgContainer = document.getElementById('donate-img-container');
+const donateImg = document.getElementById('donate-img');
 
 if (donateButton) {
     donateButton.addEventListener('click', () => {
         if (donateImgContainer.classList.contains('hide')) {
-            donateImgContainer.classList.remove('hide')
+            donateImgContainer.classList.remove('hide');
         } else {
-            donateImgContainer.classList.add('hide')
+            donateImgContainer.classList.add('hide');
         }
     })
 
-    donateImg.src = donateImg.dataset.src
+    donateImg.src = donateImg.dataset.src;
 }
