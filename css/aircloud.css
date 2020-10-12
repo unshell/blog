@@ -983,6 +983,13 @@ body {
   .archives-container .one-tag-list ul li a span {
     color: #4a4a4a;
   }
+  .post-content center {
+    text-indent: 0em !important;
+  }
+  .post-content center img {
+    display: block;
+    width: 60%;
+  }
 }
 
 /* 主题样式 */
