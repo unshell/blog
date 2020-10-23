@@ -64,14 +64,12 @@ function toggleSeachField() {
 }
 
 function showSearchField() {
-    searchInput.focus();
     searchField.classList.add('show-flex-fade');
-    searchField.classList.remove('hide-flex-fade');
+    searchInput.focus();
 }
 
 function hideSearchField() {
     window.onkeydown = null;
-    searchField.classList.add('hide-flex-fade');
     searchField.classList.remove('show-flex-fade');
 }
 
@@ -100,7 +98,6 @@ function searchFromKeyWord(keyword = "") {
                 lowerTitle = title.toLowerCase();
                 lowerContent = content.toLowerCase();
             }
-
 
             if (lowerTitle.indexOf(handleKeyword) !== -1 || lowerContent.indexOf(handleKeyword) !== -1) {
                 let resultItem = {};
@@ -173,7 +170,6 @@ function search() {
             }
         }
     }
-
 
     if (!searchJson) {
         let isXml;
@@ -323,7 +319,6 @@ if (window.isPost) {
         });
     }
 }
-
 
 // donate
 const donateButton = document.getElementById('donate-button');
