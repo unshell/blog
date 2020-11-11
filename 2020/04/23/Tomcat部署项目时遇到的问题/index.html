@@ -16,7 +16,7 @@
     </title>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/blog/css/aircloud.css?v=1023">
+    <link rel="stylesheet" href="/blog/css/main.css?v=1023">
     <!-- Icon CSS -->
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2103599_gii1mr7u70l.css" type="text/css">
 </head>
@@ -69,7 +69,7 @@
             </li>
             
             <li>
-                <a id="search">
+                <a href="javascript:void(0)" id="search">
                     <i class="iconfont icon-sousuo-2"></i>
                     <span>搜索</span>
                 </a>
@@ -79,7 +79,7 @@
     </div>
     
     <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Unable-to-add-the-resource"><span class="toc-text">1.Unable to add the resource</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-naming-namingContextCreationFailed"><span class="toc-text">2.naming.namingContextCreationFailed</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-至少有一个JAR被扫描用于TLD但尚未包含TLD。"><span class="toc-text">3.至少有一个JAR被扫描用于TLD但尚未包含TLD。</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Unable-to-add-the-resource"><span class="toc-text">1.Unable to add the resource</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-naming-namingContextCreationFailed"><span class="toc-text">2.naming.namingContextCreationFailed</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-至少有一个JAR被扫描用于TLD但尚未包含TLD。"><span class="toc-text">3.至少有一个JAR被扫描用于TLD但尚未包含TLD。</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -108,7 +108,7 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2020-04-23 17:23:19</span></span>
+        <span class="attr">发布于：<span>2020-04-23</span></span>
         
         <span class="attr">标签：/
             
@@ -125,13 +125,13 @@
         </span>
     </div>
     <div class="post-content ">
-        <h3 id="1-Unable-to-add-the-resource"><a href="#1-Unable-to-add-the-resource" class="headerlink" title="1.Unable to add the resource"></a>1.Unable to add the resource</h3><blockquote>
+        <h2 id="1-Unable-to-add-the-resource"><a href="#1-Unable-to-add-the-resource" class="headerlink" title="1.Unable to add the resource"></a>1.Unable to add the resource</h2><blockquote>
 <p>org.apache.catalina.webresources.Cache.getResource Unable to add the resource</p>
 </blockquote>
 <p><strong>原因：</strong>资源缓存空间不足，得配置更大的资源缓存空间</p>
 <p><strong>解决方法：</strong>修改 Tomcat 文件夹下 conf 文件中的 context.xml 文件，添加内容如下：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Context</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">Resources</span> <span class="attr">cachingAllowed</span>=<span class="string">"true"</span> <span class="attr">cacheMaxSize</span>=<span class="string">"150000"</span> &gt;</span><span class="tag">&lt;/<span class="name">Resources</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Context</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-naming-namingContextCreationFailed"><a href="#2-naming-namingContextCreationFailed" class="headerlink" title="2.naming.namingContextCreationFailed"></a>2.naming.namingContextCreationFailed</h3><blockquote>
+<h2 id="2-naming-namingContextCreationFailed"><a href="#2-naming-namingContextCreationFailed" class="headerlink" title="2.naming.namingContextCreationFailed"></a>2.naming.namingContextCreationFailed</h2><blockquote>
 <p>org.apache.catalina.core.NamingContextListener.lifecycleEvent naming.namingContextCreationFailed</p>
 </blockquote>
 <p><strong>原因</strong>：命名监听器创建失败</p>

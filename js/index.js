@@ -101,7 +101,7 @@ function searchFromKeyWord(keyword = "") {
 
             if (lowerTitle.indexOf(handleKeyword) !== -1 || lowerContent.indexOf(handleKeyword) !== -1) {
                 let resultItem = {};
-                resultItem.title = title.replace(keyword, "<span class='red'>" + keyword + '</span>');
+                resultItem.title = title.replace(keyword, "<span class='keyword'>" + keyword + '</span>');
                 resultItem.url = item.url;
 
                 resultItem.content = [];
@@ -112,11 +112,10 @@ function searchFromKeyWord(keyword = "") {
                     let begin = lowerContent.indexOf(handleKeyword) - sildeWindowSize / 2 < 0 ? 0 : lowerContent.indexOf(handleKeyword) - sildeWindowSize / 2;
                     let end = begin + sildeWindowSize;
                     let reg = caseSensitive ? new RegExp('(' + keyword + ')', 'g') : new RegExp('(' + keyword + ')', 'ig');
-                    resultItem.content.push("..." + content.slice(lastend + begin, lastend + end).replace(reg, "<span class='red'>$1</span>") + "...");
+                    resultItem.content.push("..." + content.slice(lastend + begin, lastend + end).replace(reg, "<span class='keyword'>$1</span>") + "...");
                     lowerContent = lowerContent.slice(end, lowerContent.length);
                     lastend = end;
                 }
-                // resultItem.title = title.replace(keyword, "<span class='red'>" + keyword + '</span>');
                 result.push(resultItem);
             }
         })
