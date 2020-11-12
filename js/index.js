@@ -1,17 +1,4 @@
-// Global functions and listeners
-window.onresize = () => {
-    // when window resize , we show remove some class that me be added
-    // often for debug
-    if (window.document.documentElement.clientWidth > 680) {
-        let aboutContent = document.getElementById('nav-content');
-        aboutContent.classList.remove('hide-block');
-        aboutContent.classList.remove('show-block');
-    }
-
-    reHeightToc();
-};
-
-// Nav switch function on mobile
+// 移动端导航切换
 const navToggle = document.getElementById('site-nav-toggle');
 navToggle.addEventListener('click', () => {
     let aboutContent = document.getElementById('nav-content');
@@ -24,7 +11,7 @@ navToggle.addEventListener('click', () => {
     }
 });
 
-// global search
+// 本地搜索
 const searchButton = document.getElementById('search');
 const searchField = document.getElementById('search-field');
 const searchInput = document.getElementById('search-input');
@@ -52,6 +39,11 @@ beginSearch.addEventListener('click', () => {
     let keyword = searchInput.value;
     if (keyword) {
         searchFromKeyWord(keyword);
+    } else {
+        searchResultContainer.innerHTML = `
+            <div class="no-search-result">输入点什么吧</div>
+        `
+        return;
     }
 });
 
@@ -73,23 +65,22 @@ function hideSearchField() {
     searchField.classList.remove('show-flex-fade');
 }
 
-function searchFromKeyWord(keyword = "") {
+function searchFromKeyWord(keyword) {
     let result = [];
-
     let sildeWindowSize = 100;
-
     let handleKeyword = keyword;
 
     if (!caseSensitive) {
         handleKeyword = keyword.toLowerCase();
     }
-    if (!searchJson) return -1;
-    else {
-        searchJson.forEach((item) => {
 
+    if (!searchJson) {
+        return -1;
+    } else {
+        searchJson.forEach((item) => {
             if (!item.title || !item.content) return 0; // break
 
-            let title = item.title;
+            let title = item.title.trim();
             let content = item.content.trim().replace(/<[^>]+>/g, "").replace(/[`#\n]/g, "");
 
             let lowerTitle = title, lowerContent = content;
@@ -123,7 +114,7 @@ function searchFromKeyWord(keyword = "") {
 
     if (!result.length) {
         searchResultContainer.innerHTML = `
-            <div class="no-search-result">No Result</div>
+            <div class="no-search-result">无结果</div>
         `
         return;
     }
@@ -159,7 +150,7 @@ function search() {
 
     window.onkeydown = (e) => {
         if (e.which === 27) {
-            /** 这里编写当ESC按下时的处理逻辑！ */
+            // ESC按下
             toggleSeachField();
         } else if (e.which === 13) {
             // 回车按下
@@ -210,6 +201,11 @@ function getDistanceOfLeft(obj) {
         top: top
     };
 }
+
+// 窗口重置监听
+window.onresize = () => {
+    reHeightToc();
+};
 
 var toc = document.getElementById('toc');
 

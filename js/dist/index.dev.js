@@ -1,19 +1,6 @@
 "use strict";
 
-// Global functions and listeners
-window.onresize = function () {
-  // when window resize , we show remove some class that me be added
-  // often for debug
-  if (window.document.documentElement.clientWidth > 680) {
-    var aboutContent = document.getElementById('nav-content');
-    aboutContent.classList.remove('hide-block');
-    aboutContent.classList.remove('show-block');
-  }
-
-  reHeightToc();
-}; // Nav switch function on mobile
-
-
+// 移动端导航切换
 var navToggle = document.getElementById('site-nav-toggle');
 navToggle.addEventListener('click', function () {
   var aboutContent = document.getElementById('nav-content');
@@ -25,7 +12,7 @@ navToggle.addEventListener('click', function () {
     aboutContent.classList.add('hide-block');
     aboutContent.classList.remove('show-block');
   }
-}); // global search
+}); // 本地搜索
 
 var searchButton = document.getElementById('search');
 var searchField = document.getElementById('search-field');
@@ -50,6 +37,9 @@ beginSearch.addEventListener('click', function () {
 
   if (keyword) {
     searchFromKeyWord(keyword);
+  } else {
+    searchResultContainer.innerHTML = "\n            <div class=\"no-search-result\">\u8F93\u5165\u70B9\u4EC0\u4E48\u5427</div>\n        ";
+    return;
   }
 });
 
@@ -71,8 +61,7 @@ function hideSearchField() {
   searchField.classList.remove('show-flex-fade');
 }
 
-function searchFromKeyWord() {
-  var keyword = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+function searchFromKeyWord(keyword) {
   var result = [];
   var sildeWindowSize = 100;
   var handleKeyword = keyword;
@@ -81,11 +70,13 @@ function searchFromKeyWord() {
     handleKeyword = keyword.toLowerCase();
   }
 
-  if (!searchJson) return -1;else {
+  if (!searchJson) {
+    return -1;
+  } else {
     searchJson.forEach(function (item) {
       if (!item.title || !item.content) return 0; // break
 
-      var title = item.title;
+      var title = item.title.trim();
       var content = item.content.trim().replace(/<[^>]+>/g, "").replace(/[`#\n]/g, "");
       var lowerTitle = title,
           lowerContent = content;
@@ -117,7 +108,7 @@ function searchFromKeyWord() {
   }
 
   if (!result.length) {
-    searchResultContainer.innerHTML = "\n            <div class=\"no-search-result\">No Result</div>\n        ";
+    searchResultContainer.innerHTML = "\n            <div class=\"no-search-result\">\u65E0\u7ED3\u679C</div>\n        ";
     return;
   }
 
@@ -177,7 +168,7 @@ function search() {
 
   window.onkeydown = function (e) {
     if (e.which === 27) {
-      /** 这里编写当ESC按下时的处理逻辑！ */
+      // ESC按下
       toggleSeachField();
     } else if (e.which === 13) {
       // 回车按下
@@ -232,7 +223,12 @@ function getDistanceOfLeft(obj) {
     left: left,
     top: top
   };
-}
+} // 窗口重置监听
+
+
+window.onresize = function () {
+  reHeightToc();
+};
 
 var toc = document.getElementById('toc');
 var tocToTop = getDistanceOfLeft(toc).top;

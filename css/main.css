@@ -312,6 +312,7 @@ html, body {
 
 #esc-search, #begin-search {
     width: 60px;
+    cursor: pointer;
 }
 
 .search-field .search-container .search-input span {
@@ -749,26 +750,29 @@ pre .javascript .function, pre .keyword {
     color: rgba(65, 74, 81, .8);
 }
 
+.highlight table {
+    margin: 0;
+}
+
 .highlight, pre {
     line-height: 1.5em;
     letter-spacing: .5px;
     overflow: auto;
 }
 
-.highlight .td {
+.highlight td {
     border: none;
     padding: 0;
 }
 
 .highlight .gutter pre {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
     color: #869194;
     text-align: right;
 }
 
 .highlight .code pre {
-    width: 100%;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -854,6 +858,12 @@ pre .javascript .function, pre .keyword {
 }
 
 @media screen and (max-width: 760px) {
+    .search-field .search-container {
+        min-width: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
     .index-about {
         display: none;
     }
