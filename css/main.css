@@ -711,7 +711,7 @@ pre .attribute, pre .css .class, pre .css .id, pre .css .pseudo, pre .html .doct
     color: rgba(100, 149, 237, .9)
 }
 
-pre .built_in, pre .command, pre .constant, pre .literal, pre .number, pre .params, pre .preprocessor {
+pre .built_in, pre .command, pre .constant, pre .literal, pre .number, pre .params, pre .preprocessor, pre .comment {
     color: rgba(245, 135, 31, .9)
 }
 
