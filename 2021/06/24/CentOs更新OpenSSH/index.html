@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="阿丘的博客">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/blog/image/favicon.svg">
+
+    <title>
+        
+        CentOs 更新 OpenSSH - 阿丘的博客 | Unshell&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/main.css?v=1023">
+    <!-- Icon CSS -->
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2103599_gii1mr7u70l.css" type="text/css">
+</head>
+<body>
+    <div class="site-nav-toggle" id="site-nav-toggle">
+        <button><i class="iconfont icon-menu1"></i></button>
+    </div>
+
+    <div class="index-about">
+        <i> 我相信所有坚韧不拔的努力，迟早会得来好报酬 </i>
+    </div>
+
+    <div class="index-container">
+        
+        <div class="index-left">
+            <div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/blog/image/avatar.jpeg" />
+        </div>
+        <div class="name">
+            <i>阿 丘</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/blog/">
+                    <i class="iconfont icon-home-"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/tags">
+                    <i class="iconfont icon-tags"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/archive">
+                    <i class="iconfont icon-guidang"></i>
+                    <span>归档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/about/">
+                    <i class="iconfont icon-guanyu"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="javascript:void(0)" id="search">
+                    <i class="iconfont icon-sousuo-2"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#更新-OpenSSH"><span class="toc-text">更新 OpenSSH</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-下载最新版OpenSSH安装包"><span class="toc-text">1.下载最新版OpenSSH安装包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-记录下当前sshd-pid的路径"><span class="toc-text">2.记录下当前sshd.pid的路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-使用RPM指令删除老版本"><span class="toc-text">3.使用RPM指令删除老版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-安装依赖"><span class="toc-text">4.安装依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-编译安装OpenSSH"><span class="toc-text">5.编译安装OpenSSH</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-拷贝服务文件"><span class="toc-text">6.拷贝服务文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-配置远程允许Root用户连接"><span class="toc-text">7.配置远程允许Root用户连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-启动SSH并添加到服务"><span class="toc-text">8.启动SSH并添加到服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#相关文章"><span class="toc-text">相关文章</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux-安全策略"><span class="toc-text">Linux 安全策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-设置密码失效时间"><span class="toc-text">1.设置密码失效时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-密码复杂度检查"><span class="toc-text">2.密码复杂度检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-密码重用限制"><span class="toc-text">3.密码重用限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-设置SSH空闲超时退出"><span class="toc-text">4.设置SSH空闲超时退出</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"><i class="iconfont icon-chacha"></i></span>
+            <input type="text" id="search-input" autocomplete="off" placeholder="Search" />
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container"></div>
+    </div>
+</div>
+            <div class="index-about-mobile">
+                <i> 我相信所有坚韧不拔的努力，迟早会得来好报酬 </i>
+            </div>
+        </div>
+        
+        <div class="index-middle">
+            <!-- Main Content -->
+            <div class="post-container">
+    <div class="post-title">
+        CentOs 更新 OpenSSH
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2021-06-24</span></span>
+        
+        <span class="attr">标签：/
+            
+            <a class="tag" href="/blog/tags/#linux" title="linux">linux</a>
+            <span>/</span>
+            
+            <a class="tag" href="/blog/tags/#openssh" title="openssh">openssh</a>
+            <span>/</span>
+            
+            
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+        </span>
+        </span>
+    </div>
+    <div class="post-content ">
+        <h2 id="更新-OpenSSH"><a href="#更新-OpenSSH" class="headerlink" title="更新 OpenSSH"></a>更新 OpenSSH</h2><blockquote>
+<p>更新前版本为OpenSSH_7.4pl，OpenSSL 1.0.2k-fips，更新目标版本为</p>
+</blockquote>
+<p><a href="https://www.cnblogs.com/lynk/p/10234115.html" target="_blank" rel="noopener">OpenSSH基础介绍</a></p>
+<h3 id="1-下载最新版OpenSSH安装包"><a href="#1-下载最新版OpenSSH安装包" class="headerlink" title="1.下载最新版OpenSSH安装包"></a>1.下载最新版OpenSSH安装包</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> pi 版为编译安装包</span></span><br><span class="line">wget https://openbsd.hk/pub/OpenBSD/OpenSSH/portable/openssh-8.6p1.tar.gz</span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压安装包</span></span><br><span class="line">tar -zxvf ./openssh-8.6p1.tar.gz</span><br></pre></td></tr></table></figure>
+<h3 id="2-记录下当前sshd-pid的路径"><a href="#2-记录下当前sshd-pid的路径" class="headerlink" title="2.记录下当前sshd.pid的路径"></a>2.记录下当前sshd.pid的路径</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 从根目录开始查找 sshd.pid 文件</span></span><br><span class="line">find / -name sshd.pid</span><br><span class="line"><span class="meta">#</span><span class="bash"> 返回结果如下</span></span><br><span class="line">/run/sshd.pid</span><br></pre></td></tr></table></figure>
+<h3 id="3-使用RPM指令删除老版本"><a href="#3-使用RPM指令删除老版本" class="headerlink" title="3.使用RPM指令删除老版本"></a>3.使用RPM指令删除老版本</h3><blockquote>
+<p>rpm（英文全拼：redhat package manager） 原本是 Red Hat Linux 发行版专门用来管理 Linux 各项套件的程序，由于它遵循 GPL 规则且功能强大方便，因而广受欢迎。逐渐受到其他发行版的采用</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查询 openssh 相关的所有套件（-a 查询所有，-q 询问模式）</span></span><br><span class="line">rpm -qa |grep openssh</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查询结果大致如下</span></span><br><span class="line">openssh-clients-7.4p1-21.el7.x86_64</span><br><span class="line">openssh-server-7.4.p1-21.el7.x86_64</span><br><span class="line">openssh-7.4p1-21.el7.x86_64</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除查询的结果（-e 删除指定的套件）</span></span><br><span class="line">rpm -e `rpm -qa |grep openssh`</span><br></pre></td></tr></table></figure>
+<h3 id="4-安装依赖"><a href="#4-安装依赖" class="headerlink" title="4.安装依赖"></a>4.安装依赖</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install zlib-devel openssl-devel gcc gcc-c++ make -y</span><br></pre></td></tr></table></figure>
+<h3 id="5-编译安装OpenSSH"><a href="#5-编译安装OpenSSH" class="headerlink" title="5.编译安装OpenSSH"></a>5.编译安装OpenSSH</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 进入解压后的 OpenSSH 文件夹</span></span><br><span class="line">cd ./openssh-8.6p1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 获取 OpenSSL 的启动位置</span></span><br><span class="line">openssl version -a</span><br><span class="line">OPENSSLDIR："/etc/pki/tls"</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 执行 configure 文件（--with-ssl-dir参数为上一步OpenSSL的位置）</span></span><br><span class="line">./configure --prefix=/usr/ --sysconfdir=/etc/ssh/ --with-ssl-dir=/etc/pki/tls --with-md5-passwords --with-kerberos5 --mandir=/usr/share/man/ </span><br><span class="line"><span class="meta">#</span><span class="bash"> configure 成功后，会提示 OpenSSH has been configured with the following options：&lt;!-- 配置信息 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 运行 make 和 make install 指令（&amp;&amp; 的意思是指 make 不出错则直接执行 make install）</span></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>当软件通过源代码编译后安装，Configure 脚本工具是基础配置应用。</p>
+</blockquote>
+<p>以上 configure 用到的参数如下：</p>
+<ul>
+<li>–prefix=PEWFIX：包在安装时可以彻底的重新安置他的结构独立部分</li>
+<li>–sysconfdir=DIR：指定在单个机器上使用的只读数据的安装位置</li>
+<li>–with-PACKAGE[=ARG]：当用’configure’来配置一个源码树时,可以提供其他已经安装的软件包的信息</li>
+<li>–mandir=DIR：指定手册页的安装位置</li>
+</ul>
+<h3 id="6-拷贝服务文件"><a href="#6-拷贝服务文件" class="headerlink" title="6.拷贝服务文件"></a>6.拷贝服务文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp ./contrib/redhat/sshd.init /etc/init.d/sshd</span><br><span class="line">chmod +x /etc/init.d/sshd</span><br></pre></td></tr></table></figure>
+<h3 id="7-配置远程允许Root用户连接"><a href="#7-配置远程允许Root用户连接" class="headerlink" title="7.配置远程允许Root用户连接"></a>7.配置远程允许Root用户连接</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/ssh/sshd_config</span><br><span class="line"><span class="meta">#</span><span class="bash"> 配置允许Root连接</span></span><br><span class="line">PermitRootLogin yes</span><br></pre></td></tr></table></figure>
+<h3 id="8-启动SSH并添加到服务"><a href="#8-启动SSH并添加到服务" class="headerlink" title="8.启动SSH并添加到服务"></a>8.启动SSH并添加到服务</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 启动 sshd</span></span><br><span class="line">/etc/init.d/sshd start</span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置sshd服务开启</span></span><br><span class="line">chkconfig sshd on</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看 sshd 服务运行状态</span></span><br><span class="line">chkconfig --list sshd</span><br><span class="line"><span class="meta">#</span><span class="bash"> 结果如下：</span></span><br><span class="line">sshd	0:off	1:off	2:on	3:on	4:on	5:on	6:off</span><br></pre></td></tr></table></figure>
+<h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><ul>
+<li><a href="https://blog.csdn.net/qq_33684555/article/details/81872110" target="_blank" rel="noopener">OpenSSH升级流程</a></li>
+<li><a href="https://www.cnblogs.com/tdalcn/archive/2011/11/11/2245402.html" target="_blank" rel="noopener">Configure参数详解</a></li>
+</ul>
+<h2 id="Linux-安全策略"><a href="#Linux-安全策略" class="headerlink" title="Linux 安全策略"></a>Linux 安全策略</h2><h3 id="1-设置密码失效时间"><a href="#1-设置密码失效时间" class="headerlink" title="1.设置密码失效时间"></a>1.设置密码失效时间</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/login.defs</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 密码失效时间（9999为永不过期）</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Maximum number of days a password may by used.</span></span><br><span class="line">PASS_MAX_DAYS	90</span><br><span class="line"><span class="meta">#</span><span class="bash"> 密码修改最小间隔天数（防止频繁修改）</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Minimum number of days allowed between password changes.</span></span><br><span class="line">PASS_MIN_DAYS	7</span><br><span class="line"><span class="meta">#</span><span class="bash"> 密码最短长度</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Minimum acceptable password length.</span></span><br><span class="line">PASS_MIN_LEN	5</span><br><span class="line"><span class="meta">#</span><span class="bash"> 密码过期前多少天开始提醒</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Number of days warning given before a password expires.</span></span><br><span class="line">PASS_WARN_AGE	7</span><br></pre></td></tr></table></figure>
+<p>一般设置安全策略 PASS_MAX_DAYS 为 90 天，设置后之前的账号并不会受到影响，新增的账户按照设置后的规则</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 如果需要对之前的用户也适用配置后的规则，如设置 root 账户的 PASS_MAX_DAYS 配置则执行如下命令</span></span><br><span class="line">chage --maxdays 90 root</span><br></pre></td></tr></table></figure>
+<h3 id="2-密码复杂度检查"><a href="#2-密码复杂度检查" class="headerlink" title="2.密码复杂度检查"></a>2.密码复杂度检查</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/security/pwquality.conf</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 密码最短长度</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Minimum acceptable size <span class="keyword">for</span> the new password.</span></span><br><span class="line">minlen = 10</span><br><span class="line"><span class="meta">#</span><span class="bash"> 密码支持几种元素（如：数字，大写字母，小写字母，其他）</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> The minimum number of required classes of characters <span class="keyword">for</span> the new password（digits，uppercase，lowercase，others）.</span></span><br><span class="line">minclass = 3</span><br></pre></td></tr></table></figure>
+<p>设置完成后，账户在设置密码或者修改密码时需要遵守这个规则</p>
+<h3 id="3-密码重用限制"><a href="#3-密码重用限制" class="headerlink" title="3.密码重用限制"></a>3.密码重用限制</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/pam.d/password-auth</span><br><span class="line"><span class="meta">#</span><span class="bash"> 在下面这一句的最后加上 remember=5，其他参数保持不变如下：</span></span><br><span class="line">password    sufficient    pam_unix.so sha512 shadow nullok try_first_pass use_authtok remember=5</span><br><span class="line">vim /etc/pam.d/system-auth</span><br><span class="line"><span class="meta">#</span><span class="bash"> 在下面这一句的最后加上 remember=5，其他参数保持不变如下：</span></span><br><span class="line">password    sufficient    pam_unix.so sha512 shadow nullok try_first_pass use_authtok remember=5</span><br></pre></td></tr></table></figure>
+<p>设置完成后，账户修改密码时如果与该账户之前修改过的前五个密码相重则不允通过</p>
+<h3 id="4-设置SSH空闲超时退出"><a href="#4-设置SSH空闲超时退出" class="headerlink" title="4.设置SSH空闲超时退出"></a>4.设置SSH空闲超时退出</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/ssh/sshd_config</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 连接有效时长（如300到900，即5-15分钟）</span></span><br><span class="line">ClientAliveInterval	600</span><br><span class="line"><span class="meta">#</span><span class="bash"> 连接最大数量限制</span></span><br><span class="line">ClientAliveCountMax	2</span><br></pre></td></tr></table></figure>
+
+    </div>
+</div>
+        </div>
+    </div>
+
+    <footer class="footer">
+    <ul class="list-inline text-center">
+        
+        <li>
+            <a target="_blank" href="https://github.com/unshell">
+                <span class="fa-stack fa-lg">
+                    <i class="iconfont icon-github"></i>
+                </span>
+            </a>
+        </li>
+        
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://hexo.io/zh-cn/">Hexo</a></span>
+        <span>/</span>
+        
+        <span><a href="http://niexiaotao.cn/">AirCloud</a></span>
+        <span>/</span>
+        
+        <span><a href="https://www.iconfont.cn/">Alibaba Icon</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>@ 2018 - 2020 UnShell</p>
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+    </p>
+</footer>
+</body>
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json";
+    window.hexo_root = "/blog/";
+    window.isPost = true;
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/blog/js/index.js?v=1023"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</html>
