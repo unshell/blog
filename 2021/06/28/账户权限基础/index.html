@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="阿丘的博客">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/blog/image/favicon.svg">
+
+    <title>
+        
+        账户权限基础 - 阿丘的博客 | Unshell&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/main.css?v=1023">
+    <!-- Icon CSS -->
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2103599_gii1mr7u70l.css" type="text/css">
+</head>
+<body>
+    <div class="site-nav-toggle" id="site-nav-toggle">
+        <button><i class="iconfont icon-menu1"></i></button>
+    </div>
+
+    <div class="index-about">
+        <i> 我相信所有坚韧不拔的努力，迟早会得来好报酬 </i>
+    </div>
+
+    <div class="index-container">
+        
+        <div class="index-left">
+            <div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/blog/image/avatar.jpeg" />
+        </div>
+        <div class="name">
+            <i>阿 丘</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/blog/">
+                    <i class="iconfont icon-home-"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/tags">
+                    <i class="iconfont icon-tags"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/archive">
+                    <i class="iconfont icon-guidang"></i>
+                    <span>归档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/about/">
+                    <i class="iconfont icon-guanyu"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="javascript:void(0)" id="search">
+                    <i class="iconfont icon-sousuo-2"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#运行环境"><span class="toc-text">运行环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#账户管理"><span class="toc-text">账户管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-查看系统账户"><span class="toc-text">1.查看系统账户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-添加系统账户"><span class="toc-text">2.添加系统账户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-修改系统账户"><span class="toc-text">3.修改系统账户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-删除系统账户"><span class="toc-text">4.删除系统账户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-用户口令管理"><span class="toc-text">5.用户口令管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#群组管理"><span class="toc-text">群组管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-添加用户组"><span class="toc-text">1.添加用户组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-修改用户组"><span class="toc-text">2.修改用户组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-删除用户组"><span class="toc-text">3.删除用户组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件所属权"><span class="toc-text">文件所属权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设置文件所有者"><span class="toc-text">设置文件所有者</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置所有者操作权限"><span class="toc-text">设置所有者操作权限</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"><i class="iconfont icon-chacha"></i></span>
+            <input type="text" id="search-input" autocomplete="off" placeholder="Search" />
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container"></div>
+    </div>
+</div>
+            <div class="index-about-mobile">
+                <i> 我相信所有坚韧不拔的努力，迟早会得来好报酬 </i>
+            </div>
+        </div>
+        
+        <div class="index-middle">
+            <!-- Main Content -->
+            <div class="post-container">
+    <div class="post-title">
+        账户权限基础
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2021-06-28</span></span>
+        
+        <span class="attr">标签：/
+            
+            <a class="tag" href="/blog/tags/#linux" title="linux">linux</a>
+            <span>/</span>
+            
+            
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+        </span>
+        </span>
+    </div>
+    <div class="post-content ">
+        <h2 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h2><p>系统：CentOS Linux release 7.9.2009 (Core)</p>
+<h2 id="账户管理"><a href="#账户管理" class="headerlink" title="账户管理"></a>账户管理</h2><h3 id="1-查看系统账户"><a href="#1-查看系统账户" class="headerlink" title="1.查看系统账户"></a>1.查看系统账户</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/passwd</span><br><span class="line"><span class="meta">#</span><span class="bash"> 结果大致如下：</span></span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">bin:x:1:1:bin:/bin:/sbin/nologin</span><br><span class="line">daemon:x:2:2:daemon:/sbin:/sbin/nologin</span><br><span class="line">adm:x:3:4:adm:/var/adm:/sbin/nologin</span><br><span class="line">......</span><br><span class="line"><span class="meta">#</span><span class="bash"> 用户名:口令:用户标识号:组标识号:注释性描述:主目录:登录Shell</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-添加系统账户"><a href="#2-添加系统账户" class="headerlink" title="2.添加系统账户"></a>2.添加系统账户</h3><p><strong>useradd [-mMnr] 用户名</strong></p>
+<ul>
+<li><strong>参数说明</strong><ul>
+<li>-m 　自动建立用户的登入目录</li>
+<li>-M 　不要自动建立用户的登入目录</li>
+<li>-n 　取消建立以用户名称为名的群组</li>
+<li>-r 　建立系统帐号</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>当然这里只是部分的参数说明，因为还有大部分的参数在 usermod 中同样支持，更多参数可以 –help 查看。</p>
+</blockquote>
+<h3 id="3-修改系统账户"><a href="#3-修改系统账户" class="headerlink" title="3.修改系统账户"></a>3.修改系统账户</h3><p><strong>usermod [-c &lt;备注&gt;][-d &lt;登入目录&gt;][-e &lt;有效期限&gt;][-f &lt;缓冲天数&gt;][-g &lt;群组&gt;][-G &lt;群组&gt;][-s <shell>][-u ] 用户账号</shell></strong></p>
+<ul>
+<li><strong>参数说明</strong><ul>
+<li>-c&lt;备注&gt; 　修改用户帐号的备注文字</li>
+<li>-d登入目录&gt; 　修改用户登入时的目录</li>
+<li>-e&lt;有效期限&gt; 　修改帐号的有效期限</li>
+<li>-f&lt;缓冲天数&gt; 　修改在密码过期后多少天即关闭该帐号</li>
+<li>-g&lt;群组&gt; 　修改用户所属的群组</li>
+<li>-G&lt;群组&gt; 　修改用户所属的附加群组</li>
+<li>-s<shell> 　修改用户登入后所使用的shell</shell></li>
+<li>-u<uid> 　修改用户ID</uid></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 修改用户的id（用户和群组都有唯一的id，修改群组时可以使用名称或id）</span></span><br><span class="line">usermod -u 777 root</span><br></pre></td></tr></table></figure>
+<h3 id="4-删除系统账户"><a href="#4-删除系统账户" class="headerlink" title="4.删除系统账户"></a>4.删除系统账户</h3><p><strong>userdel [-r] 用户名</strong></p>
+<ul>
+<li><strong>参数说明</strong><ul>
+<li>-r    用户的主目录一并删除</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-用户口令管理"><a href="#5-用户口令管理" class="headerlink" title="5.用户口令管理"></a>5.用户口令管理</h3><p><strong>passwd [-ludf] 用户名</strong></p>
+<ul>
+<li><strong>参数说明</strong><ul>
+<li>-l 锁定口令，即禁用账号</li>
+<li>-u 口令解锁</li>
+<li>-d 使账号无口令</li>
+<li>-f 强迫用户下次登录时修改口令</li>
+</ul>
+</li>
+</ul>
+<h2 id="群组管理"><a href="#群组管理" class="headerlink" title="群组管理"></a>群组管理</h2><h3 id="1-添加用户组"><a href="#1-添加用户组" class="headerlink" title="1.添加用户组"></a>1.添加用户组</h3><p><strong>groupadd [-go] 用户组</strong></p>
+<ul>
+<li><strong>参数说明</strong><ul>
+<li>-g GID 指定新用户组的组标识号（GID）</li>
+<li>-o 一般与-g选项同时使用，表示新用户组的GID可以与系统已有用户组的GID相同</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-修改用户组"><a href="#2-修改用户组" class="headerlink" title="2.修改用户组"></a>2.修改用户组</h3><p><strong>groupadd [-gon] 用户组</strong></p>
+<ul>
+<li><strong>参数说明</strong><ul>
+<li>-n    重命名用户组</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-删除用户组"><a href="#3-删除用户组" class="headerlink" title="3.删除用户组"></a>3.删除用户组</h3><p><strong>groupdel 用户组</strong></p>
+<blockquote>
+<p>如果一个账户通过 <em>-G</em> 设置了多个用户组，可以通过 <em>newgrp 用户组</em> 来切换其他用户组，已达到权限管理的目的。</p>
+</blockquote>
+<h2 id="文件所属权"><a href="#文件所属权" class="headerlink" title="文件所属权"></a>文件所属权</h2><p>当然我们设置用户以及用户组是为了分配权限，而分配权限的目的就是为了让不同的用户或者组只能操作属于自己权限内的文件或文件夹。</p>
+<h3 id="设置文件所有者"><a href="#设置文件所有者" class="headerlink" title="设置文件所有者"></a>设置文件所有者</h3><p><strong>chown [-cfhvR] user[:group] file…</strong></p>
+<ul>
+<li><strong>参数说明</strong><ul>
+<li>user : 新的文件拥有者的使用者 ID</li>
+<li>group : 新的文件拥有者的使用者组(group)</li>
+<li>-c : 显示更改的部分的信息</li>
+<li>-f : 忽略错误信息</li>
+<li>-h :修复符号链接</li>
+<li>-v : 显示详细的处理信息</li>
+<li>-R : 处理指定目录以及其子目录下的所有文件</li>
+</ul>
+</li>
+</ul>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 设置 /var/run/httpd.pid 文件的所有者为 root</span></span><br><span class="line">chown root /var/run/httpd.pid</span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置 /var/run/httpd.pid 文件的所属群组为 root</span></span><br><span class="line">chown :root /var/run/httpd.pid</span><br><span class="line"><span class="meta">#</span><span class="bash"> 也可以一次性设置所有者和所属群组</span></span><br><span class="line">chown root:root /var/run/httpd.pid</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置文件下所有文件的所有者为 root</span></span><br><span class="line">chown -R root /var/run</span><br><span class="line"><span class="meta">#</span><span class="bash"> 或者使用编号也是同样的效果</span></span><br><span class="line">chown -R 0 /var/run</span><br></pre></td></tr></table></figure>
+<h3 id="设置所有者操作权限"><a href="#设置所有者操作权限" class="headerlink" title="设置所有者操作权限"></a>设置所有者操作权限</h3><p><strong>chmod [-cfvR] mode file…</strong></p>
+<ul>
+<li><strong>参数说明</strong><ul>
+<li>-c : 若该文件权限确实已经更改，才显示其更改动作</li>
+<li>-f : 若该文件权限无法被更改也不要显示错误讯息</li>
+<li>-v : 显示权限变更的详细资料</li>
+<li>-R : 对目前目录下的所有文件与子目录进行相同的权限变更(即以递归的方式逐个变更)</li>
+</ul>
+</li>
+</ul>
+<p>这里要注意的是 mode 的用法，首先我们得先了解一个文件包含三种权限：分别是读（r）、写（w）、执行（x），而给文件设置权限又包含三种操作：设置权限（=）、在原有权限的基础上添加权限（+）、在原有的基础上去除权限（-），所以很容易的可以得出 +w 为添加写权限、-x 为去除执行权限。</p>
+<p>然而仅仅有这两个符号还是不够的，文件权限还划分为三个等级，分别是：文件所有者（Owner）、用户组（Group）、其他用户（Users），三者的首字母代表符号模式。</p>
+<p>因为我们在之前给用户设置了用户组，所以要给文件的拥有组设置权限如：<strong>chmod g+r httpd.pid</strong>，当然也可以多个等级一起赋值如：<strong>chmod ugo+r httpd.pid</strong> 等同于 <strong>chmod a+r httpd.pid</strong>（a=all 代表所有权限等级）。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 通过 ls 指令可以看出当前文件夹下所有文件的权限</span></span><br><span class="line">ls -l</span><br><span class="line"><span class="meta">#</span><span class="bash"> 大致为以下结构：</span></span><br><span class="line">drwxr-xr-x.  19 root root  267 Jun 24 10:58 var</span><br><span class="line"><span class="meta">#</span><span class="bash"> drwxr-xr-x，已等级划分分别为，rwx、-xr、r-x，-表示无权限，d表示文件类型（是文件夹则为d）</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 当然我们可以看出var文件夹的所有者为root，所属用户组为root</span></span><br></pre></td></tr></table></figure>
+<p>有意思的是r、w、x可以用八进制来代替，分别是：r=4，w=2，x=1，所以：</p>
+<ul>
+<li>若要 rwx 属性则 4+2+1=7</li>
+<li>若要 rw- 属性则 4+2=6</li>
+<li>若要 r-x 属性则 4+1=5</li>
+</ul>
+<p>那么 <strong>chmod a=rwx file</strong> 与 <strong>chmod 777 file</strong> 效果相同。</p>
+
+    </div>
+</div>
+        </div>
+    </div>
+
+    <footer class="footer">
+    <ul class="list-inline text-center">
+        
+        <li>
+            <a target="_blank" href="https://github.com/unshell">
+                <span class="fa-stack fa-lg">
+                    <i class="iconfont icon-github"></i>
+                </span>
+            </a>
+        </li>
+        
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://hexo.io/zh-cn/">Hexo</a></span>
+        <span>/</span>
+        
+        <span><a href="http://niexiaotao.cn/">AirCloud</a></span>
+        <span>/</span>
+        
+        <span><a href="https://www.iconfont.cn/">Alibaba Icon</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>@ 2018 - 2020 UnShell</p>
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+    </p>
+</footer>
+</body>
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json";
+    window.hexo_root = "/blog/";
+    window.isPost = true;
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/blog/js/index.js?v=1023"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</html>
