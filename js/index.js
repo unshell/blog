@@ -11,6 +11,14 @@ navToggle.addEventListener('click', () => {
     }
 });
 
+const imgs = document.querySelectorAll('.post-content img');
+for (const img of imgs) {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', (e) => {
+        window.open(e.target.src);
+    });
+}
+
 // 本地搜索
 const searchButton = document.getElementById('search');
 const searchField = document.getElementById('search-field');
@@ -83,7 +91,8 @@ function searchFromKeyWord(keyword) {
             let title = item.title.trim();
             let content = item.content.trim().replace(/<[^>]+>/g, "").replace(/[`#\n]/g, "");
 
-            let lowerTitle = title, lowerContent = content;
+            let lowerTitle = title,
+                lowerContent = content;
 
             if (!caseSensitive) {
                 lowerTitle = title.toLowerCase();
@@ -227,8 +236,7 @@ if (window.isPost) {
 
     if (!toc || !toc.children || !toc.children[0]) {
         // do nothing
-    }
-    else {
+    } else {
         if (toc.children[0].nodeName === "OL") {
             let ol = Array.from(toc.children[0].children);
 
@@ -244,8 +252,7 @@ if (window.isPost) {
                             dom: item
                         });
                         nameSet.add(value);
-                    }
-                    else {
+                    } else {
                         let concatArray = getArrayFromOl(Array.from(item.children[1].children));
                         nameSet.add(item.children[0].getAttribute('href').replace(/^#/, ""));
                         result.push({
